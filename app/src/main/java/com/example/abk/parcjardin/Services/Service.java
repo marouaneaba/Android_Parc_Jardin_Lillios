@@ -44,7 +44,7 @@ public interface Service {
 	void getCategorieByParcJardinn(@Path("parcJardinn") String ParcJardin,Callback<List<Categorie>> callback);
 
      @GET("/api/CommentairesByParcJardinn/{parcJardin}")
-     void getCommenatiresByParcJardin(@Path("parcJardinn") String ParcJardin,Callback<List<Categorie>> callback);
+     void getCommenatiresByParcJardin(@Path("parcJardinn") String ParcJardin,Callback<List<ParcJardin>> callback);
 
     @POST("/api/commentaireAjouter")
     void postCommentaire(@Field("commenaire") String commentairecd , Callback<List<Repo>> callback);

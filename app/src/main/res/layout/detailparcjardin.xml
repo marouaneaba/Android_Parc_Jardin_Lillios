@@ -13,184 +13,196 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <TextView
-                android:text="TextView"
+                android:id="@+id/latitude"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/latitude" />
+                android:fontFamily="casual"
+                android:text="TextView" />
 
             <TextView
-                android:text="TextView"
+                android:id="@+id/logitude"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/logitude" />
+                android:text="TextView" />
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:text="Sport"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/Sport"
-                    android:layout_weight="0.31"
-                    android:backgroundTint="#2abe3d"
-                    android:background="#2abe3d"
-                    android:textColor="#331c0c"
-                    android:fontFamily="casual"
-                    android:typeface="monospace"
-                    android:textStyle="normal|bold" />
-
-                <TextView
-                    android:text="Etude"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.31"
+                    android:background="#2abe3d"
+                    android:backgroundTint="#2abe3d"
+                    android:fontFamily="casual"
+                    android:text="Sport"
+                    android:textColor="#331c0c"
+                    android:textStyle="normal|bold"
+                    android:typeface="monospace" />
+
+                <TextView
                     android:id="@+id/Etude"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
                     android:layout_weight="0.19"
                     android:background="#2abe3d"
-                    android:layout_marginLeft="30px"
                     android:fontFamily="casual"
+                    android:text="Etude"
                     android:textColor="#331c0c"
                     android:textStyle="normal|bold"
                     android:typeface="monospace" />
 
                 <TextView
-                    android:text="Restauration"
+                    android:id="@+id/Restauration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/Restauration"
+                    android:layout_marginLeft="30px"
                     android:background="#2abe3d"
-                    android:typeface="monospace"
+                    android:fontFamily="casual"
+                    android:text="Restauration"
                     android:textColor="#331c0c"
                     android:textStyle="normal|bold"
-                    android:fontFamily="casual"
-                    android:layout_marginLeft="30px"/>
+                    android:typeface="monospace" />
 
                 <Button
-                    android:text="Itenér.."
+                    android:id="@+id/iteneraire"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/iteneraire"
-                    android:layout_weight="0.56"
-                    android:textSize="14sp"
-                    android:onClick="iteneraire"
                     android:layout_marginLeft="30px"
-                    android:typeface="monospace"
+                    android:layout_weight="0.56"
                     android:fontFamily="casual"
+                    android:onClick="iteneraire"
+                    android:text="Itenér.."
+                    android:textAllCaps="false"
+                    android:textSize="14sp"
                     android:textStyle="normal|bold"
-                    android:textAllCaps="false" />
+                    android:typeface="monospace" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    app:srcCompat="@mipmap/ic_launcher"
                     android:id="@+id/imageView3"
-                    android:layout_weight="1" />
-
-                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    app:srcCompat="@android:drawable/screen_background_dark_transparent"
+                    android:layout_weight="1"
+                    app:srcCompat="@mipmap/ic_launcher" />
+
+                <ImageView
                     android:id="@+id/imageView2"
-                    android:layout_weight="1" />
-
-                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    app:srcCompat="@drawable/common_full_open_on_phone"
+                    android:layout_weight="1"
+                    app:srcCompat="@android:drawable/screen_background_dark_transparent" />
+
+                <ImageView
                     android:id="@+id/imageView"
-                    android:layout_weight="1" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/common_full_open_on_phone" />
             </LinearLayout>
 
             <TextView
-                android:text="TextView"
+                android:id="@+id/Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/Name"
-                android:typeface="monospace"
                 android:fontFamily="casual"
-                android:textStyle="normal|bold" />
+                android:text="TextView"
+                android:textStyle="normal|bold"
+                android:typeface="monospace" />
 
             <RatingBar
+                android:id="@+id/ratingBar"
                 android:layout_width="188dp"
-                android:layout_height="44dp"
-                android:id="@+id/ratingBar" />
+                android:layout_height="44dp" />
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:text="TextView"
+                    android:id="@+id/textView4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView4"
                     android:layout_weight="1"
                     android:fontFamily="casual"
+                    android:text="TextView"
                     android:typeface="monospace" />
 
                 <TextView
-                    android:text="TextView"
+                    android:id="@+id/Horaire"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/Horaire"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:text="TextView" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:text="TextView"
+                    android:id="@+id/textView8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/textView8"
                     android:layout_weight="1"
-                    android:typeface="monospace"
-                    android:fontFamily="casual" />
+                    android:fontFamily="casual"
+                    android:text="TextView"
+                    android:typeface="monospace" />
 
                 <TextView
-                    android:text="TextView"
+                    android:id="@+id/Addresse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/Addresse"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:text="TextView" />
 
             </LinearLayout>
 
             <TextView
-                android:text="TextView"
+                android:id="@+id/Description"
                 android:layout_width="match_parent"
                 android:layout_height="89dp"
-                android:id="@+id/Description" />
+                android:text="TextView" />
 
             <Button
-                android:text="Donner un avis"
+                android:id="@+id/button9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="440px"
-                android:id="@+id/button9"
-                android:typeface="monospace"
                 android:fontFamily="casual"
+                android:text="Donner un avis"
                 android:textAllCaps="false"
+                android:textSize="14sp"
                 android:textStyle="normal|bold"
-                android:textSize="14sp" />
+                android:typeface="monospace"
+                android:onClick="AjoutCommentaire"/>
+
+
+            <LinearLayout
+                android:id="@+id/liner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 
