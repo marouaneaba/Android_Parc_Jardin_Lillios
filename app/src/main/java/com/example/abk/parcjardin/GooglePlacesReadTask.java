@@ -2,7 +2,9 @@ package com.example.abk.parcjardin;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.example.abk.parcjardin.models.ParcJardin;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -18,11 +20,13 @@ public class GooglePlacesReadTask extends AsyncTask<Object, Integer, GoogleMap> 
 
     String googlePlacesData = null;
     GoogleMap googleMap;
+    List<ParcJardin> parcJardinns;
 
     @Override
     protected GoogleMap doInBackground(Object... inputObj) {
         try {
             googleMap = (GoogleMap) inputObj[0];
+            parcJardinns = (List<ParcJardin>) inputObj[1];
 
         } catch (Exception e) {
             Log.d("Google Place Read Task", e.toString());
@@ -35,14 +39,18 @@ public class GooglePlacesReadTask extends AsyncTask<Object, Integer, GoogleMap> 
 
         map.clear();
         List<LatLng> LatLngs = new ArrayList<>();
-        LatLngs.add(new LatLng(50.611881,3.141374) );
+        for(int i=0;i<parcJardinns.size();i++){
+            LatLngs.add(new LatLng(parcJardinns.get(i).getL(),parcJardinns.get(i).getG()));
+        }
+
+        /*LatLngs.add(new LatLng(50.611881,3.141374) );
         LatLngs.add(new LatLng(50.613007,3.138083) );
         LatLngs.add(new LatLng(50.612278,3.140411) );
         LatLngs.add(new LatLng(50.612060,3.140164) );
         LatLngs.add(new LatLng(50.612156,3.140057) );
         LatLngs.add(new LatLng(50.612054,3.139113) );
         LatLngs.add(new LatLng(50.612156,3.139263) );
-
+        */
         for (int i = 0; i < LatLngs.size(); i++) {
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(LatLngs.get(i));

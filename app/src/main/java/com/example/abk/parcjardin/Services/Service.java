@@ -31,9 +31,29 @@ public interface Service {
     @GET("/api/PJ")
     void getParcJardinn(Callback<List<ParcJardin>> callback);
 
-    @GET("/api/PJ/{search}")
-    void getParcJardinnSearch(Callback<List<ParcJardin>> callback);
+    @GET("/api/PJBysearch/{search}")
+    void getParcJardinnSearch(@Path("search") String search,Callback<List<ParcJardin>> callback);
 
+    @GET("/api/PJByservice/{service}")
+    void getParcJardinnService(@Path("service") String service,Callback<List<ParcJardin>> callback);
+
+    @GET("/api/PJBylocalisation/{Latitude}/{Longitude}")
+    void getParcJardinLatitudeLongitude(@Path("Latitude") double Latitude,@Path("Longitude")double Longitude,Callback<ParcJardin> callback);
+
+	@GET("/api/categorieByPJ/{parcJardinn}")
+	void getCategorieByParcJardinn(@Path("parcJardinn") String ParcJardin,Callback<List<Categorie>> callback);
+
+     @GET("/api/CommentairesByParcJardinn/{parcJardin}")
+     void getCommenatiresByParcJardin(@Path("parcJardinn") String ParcJardin,Callback<List<Categorie>> callback);
+
+    @POST("/api/commentaireAjouter")
+    void postCommentaire(@Field("commenaire") String commentairecd , Callback<List<Repo>> callback);
+
+    /*
+    *@GET("/api/para")
+    * List searchRepos(@Query("g") String query) ==> /api/para?q=picasso
+    * */
+    /**/
     @GET("/api/Commentaire")
     void getCommentaire(Callback<List<Commentaire>> callback);
 

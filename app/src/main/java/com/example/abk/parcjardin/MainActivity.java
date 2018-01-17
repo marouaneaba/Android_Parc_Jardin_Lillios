@@ -31,6 +31,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -48,6 +49,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
     double longitude = 0;
     FragmentManager fm ;
     private int PROXIMITY_RADIUS = 5000;
+    private List<ParcJardin> parcJardinP = new ArrayList<>();
 
 
     public Service URLretrofit(){
@@ -118,10 +120,18 @@ public class MainActivity extends FragmentActivity implements LocationListener {
             }
         });*/
 
-        GooglePlacesReadTask googlePlacesReadTask = new GooglePlacesReadTask();
+        /*GooglePlacesReadTask googlePlacesReadTask = new GooglePlacesReadTask();
         Object[] toPass = new Object[1];
         toPass[0] = googleMap;
-        googlePlacesReadTask.execute(toPass);
+        googlePlacesReadTask.execute(toPass);*/
+
+        getAllParcJardin();
+        /*if(this.parcJardinP != null)
+            Toast.makeText(getApplication(),"size marouane: "+this.parcJardinP.size(),Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(getApplication(),"NULL ",Toast.LENGTH_SHORT).show();*/
+
+        //addPointMap(ParcJardinns);
 
         googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
@@ -136,28 +146,73 @@ public class MainActivity extends FragmentActivity implements LocationListener {
             }
         });
 
-        getCategorie();
+        //getCategorie();
         //getCommeantaire();
         //sendPOST();
 
     }
 
+    public void addPointMap(List<ParcJardin> parcJardins){
+
+        GooglePlacesReadTask googlePlacesReadTask = new GooglePlacesReadTask();
+        Object[] toPass = new Object[2];
+        toPass[0] = googleMap;
+        toPass[1] = parcJardins;
+        googlePlacesReadTask.execute(toPass);
+    }
 
     public void search(View v){
         String search = placeText.getText().toString();
         Service service = URLretrofit();
-        service.getParcJardinnSearch(new Callback<List<ParcJardin>>() {
+        service.getParcJardinnSearch("search",new Callback<List<ParcJardin>>() {
             @Override
             public void success(List<ParcJardin> ParcJardins, Response response) {
                 if(ParcJardins == null || ParcJardins.size() == 0 ){
                     Toast.makeText(getApplication(),"Parc Ou Jardin n'existe pas !! ",Toast.LENGTH_SHORT).show();
                 }else{
-                    PlacesDisplayTask placesDisplayTask = new PlacesDisplayTask();
-                    Object[] toPass = new Object[2];
-                    toPass[0] = googleMap;
-                    toPass[1] = ParcJardins;
-                    placesDisplayTask.execute(toPass);
+                    addPointMap(ParcJardins);
                 }
+                Toast.makeText(getApplication(),"Parc Search : "+ParcJardins.get(0).getName(),Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Toast.makeText(getApplication(),"Parc Ou Jardin n'existe pas !! ",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void getParcJardinByService(final String serviceName){
+
+        Service service = URLretrofit();
+        service.getParcJardinnService(serviceName, new Callback<List<ParcJardin>>() {
+            @Override
+            public void success(List<ParcJardin> parcJardins, Response response) {
+                Toast.makeText(getApplication(),"parcJardin Détail : "+parcJardins,Toast.LENGTH_SHORT).show();
+
+                addPointMap(parcJardins);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Toast.makeText(getApplication(),"Parc Ou Jardin n'existe pas !! ",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public List<ParcJardin> getParcJardin(){
+        return this.parcJardinP;
+    }
+
+    public void getParcJardinByLatitudeLongitude(double latitude,double longitude){
+
+        Service service = URLretrofit();
+        service.getParcJardinLatitudeLongitude(latitude,longitude, new Callback<ParcJardin>() {
+
+            @Override
+            public void success(ParcJardin parcJardin, Response response) {
+
             }
 
             @Override
@@ -199,12 +254,41 @@ public class MainActivity extends FragmentActivity implements LocationListener {
             }
         });
     }
+
     public void afficherCategorie(List<Categorie> Categories){
         System.out.println("***********categorie : "+Categories);
         for(int i=0;i<Categories.size();i++){
             Toast.makeText(this,"categorie : "+Categories.get(i),Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void getAllParcJardin(){
+        Service service = URLretrofit();
+        service.getParcJardinn(new Callback<List<ParcJardin>>() {
+            @Override
+            public void success(List<ParcJardin> parcJardins, Response response) {
+                setParcJardin(parcJardins);
+                addPointMap(parcJardins);
+                //MainActivity.this.parcJardinP = parcJardins;
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Toast.makeText(getApplication(),"Parc Ou Jardin n'existe pas !! ",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void setParcJardin(List<ParcJardin> parcJardinns){
+        //Toast.makeText(getApplication(),"size leee :  "+parcJardinns,Toast.LENGTH_SHORT).show();
+        for(int i=0;i<parcJardinns.size();i++){
+            this.parcJardinP.add(parcJardinns.get(i));
+            Toast.makeText(getApplication(),"size leee :  "+parcJardinns.size(),Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
 /*
     protected void getCommeantaire(){
         Toast.makeText(this,"1 : ",Toast.LENGTH_SHORT).show();
@@ -273,4 +357,19 @@ public class MainActivity extends FragmentActivity implements LocationListener {
     public void onProviderDisabled(String s) {
 
     }
+
+    public void Restauration(View v){
+        getParcJardinByService("restauration");
+    }
+
+    public void Etude(View v){
+        getParcJardinByService("Etude");
+    }
+
+    public void Sport(View v){
+        getParcJardinByService("Sport");
+        Toast.makeText(getApplication(),"Sport",Toast.LENGTH_SHORT).show();
+
+    }
+
 }

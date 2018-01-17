@@ -26,14 +26,16 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/button5"
                 android:textSize="12sp"
-                android:layout_weight="0.43" />
+                android:layout_weight="0.43"
+                android:onClick="Sport"/>
 
             <Button
                 android:text="Etude"
                 android:layout_width="66dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/button4"
-                android:layout_weight="0.71" />
+                android:layout_weight="0.71"
+                android:onClick="Etude"/>
 
             <Button
                 android:text="Restauration"
@@ -41,7 +43,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/button3"
                 android:layout_weight="1"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:onClick="Restauration"/>
 
             <Button
                 android:text="Plus"
