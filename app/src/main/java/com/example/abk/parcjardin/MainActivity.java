@@ -152,6 +152,12 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
     }
 
+    public void test(View v){
+        Intent intent = new Intent(MainActivity.this, DetailParcJardin.class);
+        intent.putExtra("latitude", "1.2");
+        intent.putExtra("longitude", "30.6");
+        startActivity(intent);
+    }
     public void addPointMap(List<ParcJardin> parcJardins){
 
         GooglePlacesReadTask googlePlacesReadTask = new GooglePlacesReadTask();

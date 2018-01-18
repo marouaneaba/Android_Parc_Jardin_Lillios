@@ -124,6 +124,11 @@ public class DetailParcJardin extends AppCompatActivity {
                     //left,top,right,bottom
                     params.setMargins(0, 0, 600, 0);*/
 
+                    LinearLayout linearH = new LinearLayout(DetailParcJardin.this);
+                    linearH.setOrientation(LinearLayout.HORIZONTAL);
+
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    layoutParams.setMargins(0, 0, 0, 30);
 
 
                     ImageView img = new ImageView(DetailParcJardin.this);
@@ -134,24 +139,37 @@ public class DetailParcJardin extends AppCompatActivity {
                     img.setLeft(1);
                     img.setRight(1);*/
                     img.setScaleType(ImageView.ScaleType.FIT_START);
-                    ll2.addView(img);
+                    linearH.addView(img);
+
+                    LinearLayout linear = new LinearLayout(DetailParcJardin.this);
+                    linear.setOrientation(LinearLayout.VERTICAL);
+
+                    linear.removeAllViews(); //Ligne problèmatique
+                    linear.removeAllViewsInLayout();
+
+                    TextView d = new TextView( DetailParcJardin.this);
+                    d.setText("Marouane Abakarim : ");
+                    d.setRight(600);
+                    linear.addView(d);
 
                     RatingBar rating = new RatingBar(DetailParcJardin.this);
                     rating.setScaleX(0.5f);
                     rating.setScaleY(0.5f);
                     rating.setNumStars(5);
-                    ll2.addView(rating);
+                    linear.addView(rating);
                     //params.setMargins(10, 20, 30, 40);
 
-                    TextView d = new TextView( DetailParcJardin.this);
-                    d.setText("Marouane Abakarim : ");
-                    d.setRight(600);
-                    ll2.addView(d);
+
 
                     TextView d2 = new TextView( DetailParcJardin.this);
-                    d2.setText(" commeantaire commeantaire commeantaire ");
-                    ll2.addView(d2);
-                    //ll2.addView(ll);
+                    d2.setText(" commeantaire commeantaire commeantaire" +
+                            "commeantaire commeantaire commeantaire" +
+                            "commeantaire commeantaire commeantaire" +
+                            "commeantaire commeantaire commeantaire" +
+                            "commeantaire commeantaire commeantaire ");
+                    linear.addView(d2);
+                    linearH.addView(linear);
+                    ll2.addView(linearH,layoutParams);
                 //description.setText("---------hello world--------");
                 //ll.addView(description); //Autre ligne problèmatique
 
