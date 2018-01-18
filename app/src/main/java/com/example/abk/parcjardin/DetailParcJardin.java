@@ -11,7 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -108,22 +111,51 @@ public class DetailParcJardin extends AppCompatActivity {
             public void failure(RetrofitError error) {
                 description = new TextView( DetailParcJardin.this);
 
-                LinearLayout ll = (LinearLayout) findViewById(R.id.liner);
+                LinearLayout ll2 = (LinearLayout) findViewById(R.id.liner);
                 //ll.setOrientation(LinearLayout.VERTICAL);
-                ll.removeAllViews(); //Ligne problèmatique
-                ll.removeAllViewsInLayout();
-                //for(int i=0;i<4;i++){
+                ll2.removeAllViews(); //Ligne problèmatique
+                ll2.removeAllViewsInLayout();
 
-                TextView d = new TextView( DetailParcJardin.this);
-                d.setText("Marouane Abakarim : ");
-                ll.addView(d);
-
-                description.setText("---------hello world--------");
-                ll.addView(description); //Autre ligne problèmatique
+                for(int i=0;i<4;i++){
 
 
+                    /*LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    //left,top,right,bottom
+                    params.setMargins(0, 0, 600, 0);*/
 
-                //}
+
+
+                    ImageView img = new ImageView(DetailParcJardin.this);
+                    img.setImageDrawable(getResources().getDrawable(R.drawable.man2));
+                    img.setLayoutParams(new FrameLayout.LayoutParams(100,100));
+                    /*img.setScaleX(0.5f);
+                    img.setScaleY(0.5f);
+                    img.setLeft(1);
+                    img.setRight(1);*/
+                    img.setScaleType(ImageView.ScaleType.FIT_START);
+                    ll2.addView(img);
+
+                    RatingBar rating = new RatingBar(DetailParcJardin.this);
+                    rating.setScaleX(0.5f);
+                    rating.setScaleY(0.5f);
+                    rating.setNumStars(5);
+                    ll2.addView(rating);
+                    //params.setMargins(10, 20, 30, 40);
+
+                    TextView d = new TextView( DetailParcJardin.this);
+                    d.setText("Marouane Abakarim : ");
+                    d.setRight(600);
+                    ll2.addView(d);
+
+                    TextView d2 = new TextView( DetailParcJardin.this);
+                    d2.setText(" commeantaire commeantaire commeantaire ");
+                    ll2.addView(d2);
+                    //ll2.addView(ll);
+                //description.setText("---------hello world--------");
+                //ll.addView(description); //Autre ligne problèmatique
+
+                }
 
             }
         });
