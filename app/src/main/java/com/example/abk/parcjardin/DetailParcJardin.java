@@ -1,16 +1,11 @@
 package com.example.abk.parcjardin;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.StringDef;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,6 +17,7 @@ import com.example.abk.parcjardin.Services.CommentaireFragment;
 import com.example.abk.parcjardin.Services.Service;
 import com.example.abk.parcjardin.models.ParcJardin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit.Callback;
@@ -77,6 +73,8 @@ public class DetailParcJardin extends AppCompatActivity {
         //getParcJardinByLatitudeLongitude(latitude,longitude);
         Actualiser(latitude,longitude);
         getCommentaireJardinParc("NameParcJardin");
+        getImage();
+        getCategorie();
 
     }
 
@@ -97,7 +95,61 @@ public class DetailParcJardin extends AppCompatActivity {
             }
         });
     }
+    public void getCategorie(){
+        List<String> categories = new ArrayList<String>();
+        categories.add("sport");
+        categories.add("etude");
+        categories.add("restauration");
 
+        Service service = URLretrofit();
+        LinearLayout ll2 = (LinearLayout) findViewById(R.id.imgCategories);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(10, 50, 10, 50);
+        //layoutParams.weight=80;
+        layoutParams.width = 80;
+        layoutParams.height=80;
+        //ll.setOrientation(LinearLayout.VERTICAL);
+        ll2.removeAllViews(); //Ligne problèmatique
+        ll2.removeAllViewsInLayout();
+        for(int i=0;i<categories.size();i++){
+            ImageView img = new ImageView(DetailParcJardin.this);
+
+            if(categories.get(i).equals("sport")){
+                img.setImageDrawable(getResources().getDrawable(R.drawable.footing));
+            }
+            if(categories.get(i).equals("etude")){
+                img.setImageDrawable(getResources().getDrawable(R.drawable.etude2));
+            }
+            if(categories.get(i).equals("restauration")){
+                img.setImageDrawable(getResources().getDrawable(R.drawable.restauration));
+            }
+            /*img.setMaxWidth(1);
+            img.layout(1,1,1,1);
+
+            img.setLayoutParams(new FrameLayout.LayoutParams(100,100));*/
+            //img.setScaleType(ImageView.ScaleType.FIT_START);
+            ll2.addView(img,layoutParams);
+        }
+    }
+    public void getImage(){
+        Service service = URLretrofit();
+        LinearLayout ll2 = (LinearLayout) findViewById(R.id.imgLinear);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(10, 50, 10, 50);
+        //ll.setOrientation(LinearLayout.VERTICAL);
+        ll2.removeAllViews(); //Ligne problèmatique
+        ll2.removeAllViewsInLayout();
+        for(int i=0;i<8;i++){
+            ImageView img = new ImageView(DetailParcJardin.this);
+            img.setImageDrawable(getResources().getDrawable(R.drawable.man2));
+            img.setLayoutParams(new FrameLayout.LayoutParams(100,100));
+            img.setMaxWidth(2);
+            //img.setScaleType(ImageView.ScaleType.FIT_START);
+            ll2.addView(img,layoutParams);
+        }
+
+
+    }
     public void getCommentaireJardinParc(String NameParcJardin){
 
         Service service = URLretrofit();
@@ -128,8 +180,7 @@ public class DetailParcJardin extends AppCompatActivity {
                     linearH.setOrientation(LinearLayout.HORIZONTAL);
 
                     LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    layoutParams.setMargins(0, 0, 0, 30);
-
+                    //layoutParams.setMargins(0, 0, 0, 100);
 
                     ImageView img = new ImageView(DetailParcJardin.this);
                     img.setImageDrawable(getResources().getDrawable(R.drawable.man2));
@@ -144,18 +195,22 @@ public class DetailParcJardin extends AppCompatActivity {
                     LinearLayout linear = new LinearLayout(DetailParcJardin.this);
                     linear.setOrientation(LinearLayout.VERTICAL);
 
+                    LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    layoutParams2.setMargins(20, 20, 0, 0);
+
                     linear.removeAllViews(); //Ligne problèmatique
                     linear.removeAllViewsInLayout();
 
                     TextView d = new TextView( DetailParcJardin.this);
                     d.setText("Marouane Abakarim : ");
                     d.setRight(600);
-                    linear.addView(d);
+                    linear.addView(d,layoutParams2);
 
                     RatingBar rating = new RatingBar(DetailParcJardin.this);
                     rating.setScaleX(0.5f);
-                    rating.setScaleY(0.5f);
+                    rating.setScaleY(0.4f);
                     rating.setNumStars(5);
+                    rating.setEnabled(false);
                     linear.addView(rating);
                     //params.setMargins(10, 20, 30, 40);
 
@@ -168,8 +223,23 @@ public class DetailParcJardin extends AppCompatActivity {
                             "commeantaire commeantaire commeantaire" +
                             "commeantaire commeantaire commeantaire ");
                     linear.addView(d2);
+
+                    ImageView imgLigne = new ImageView(DetailParcJardin.this);
+                    imgLigne.setImageDrawable(getResources().getDrawable(R.drawable.ligne));
+                    //imgLigne.setLayoutParams(new FrameLayout.LayoutParams(0,500));
+
+                    /*img.setScaleX(0.5f);
+                    img.setScaleY(0.5f);
+                    img.setLeft(1);
+                    img.setRight(1);*/
+                    //img.setScaleType(ImageView.ScaleType.FIT_START);
+                    linear.addView(imgLigne);
+
                     linearH.addView(linear);
-                    ll2.addView(linearH,layoutParams);
+                    ll2.addView(linearH);
+
+
+
                 //description.setText("---------hello world--------");
                 //ll.addView(description); //Autre ligne problèmatique
 
