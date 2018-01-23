@@ -10,7 +10,6 @@
     >
 
     <LinearLayout
-        android:background="@drawable/background3"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
@@ -19,76 +18,123 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="80px"
-                android:layout_height="80px"
-                android:src="@drawable/footing"
-                android:id="@+id/imageSport"
-                android:onClick="Sport"
-                android:layout_marginLeft="20px"/>
-
-            <ImageView
-                android:layout_width="80px"
-                android:layout_height="80px"
-                android:src="@drawable/etude2"
-                android:id="@+id/imageEtude"
-                android:onClick="Etude"
-                android:layout_marginLeft="30px"/>
-
-            <ImageView
-                android:layout_width="80px"
-                android:layout_height="80px"
-                android:src="@drawable/restauration"
-                android:id="@+id/imageRestauration"
-                android:onClick="Restauration"
-                android:layout_marginLeft="30px"/>
-
-
-
-            <Button
-                android:id="@+id/button8"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.43"
-                android:text="test"
-                android:onClick="test"/>
+                android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_width="80px"
-                android:layout_height="80px"
-                android:src="@drawable/add"
-                android:id="@+id/imagePlus"
-                android:onClick="Plus"
-                android:layout_marginLeft="30px"/>
+                <ImageView
+                    android:layout_width="80px"
+                    android:layout_height="80px"
+                    android:src="@drawable/parc"
+                    android:id="@+id/imageParc"
+                    android:layout_marginLeft="30px" />
+                <ImageView
+                    android:layout_width="80px"
+                    android:layout_height="80px"
+                    android:src="@drawable/jardin"
+                    android:id="@+id/imageJardin"
+                    android:layout_marginLeft="30px" />
 
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="80px"
+                    android:layout_height="80px"
+                    android:src="@drawable/footing"
+                    android:id="@+id/imageSport"
+                    android:onClick="Sport"
+                    android:layout_marginLeft="20px"/>
+
+                <ImageView
+                    android:layout_width="80px"
+                    android:layout_height="80px"
+                    android:src="@drawable/etude2"
+                    android:id="@+id/imageEtude"
+                    android:onClick="Etude"
+                    android:layout_marginLeft="30px"/>
+
+                <ImageView
+                    android:layout_width="80px"
+                    android:layout_height="80px"
+                    android:src="@drawable/restauration"
+                    android:id="@+id/imageRestauration"
+                    android:onClick="Restauration"
+                    android:layout_marginLeft="30px"/>
+
+
+                <ImageView
+                    android:layout_width="80px"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/promoner"
+                    android:id="@+id/imagePromoner"
+                    android:layout_marginBottom="15px"
+                    android:layout_marginLeft="30px" />
+                <ImageView
+                    android:layout_width="80px"
+                    android:layout_height="80px"
+                    android:src="@drawable/music"
+                    android:id="@+id/imageEcouter"
+                    android:layout_marginLeft="30px" />
+                <ImageView
+                    android:layout_width="80px"
+                    android:layout_height="80px"
+                    android:src="@drawable/observer"
+                    android:id="@+id/imageObserver"
+                    android:layout_marginLeft="30px" />
+
+                <ImageView
+                    android:layout_width="80px"
+                    android:layout_height="80px"
+                    android:src="@drawable/tou"
+                    android:id="@+id/imageTout"
+                    android:layout_marginRight="30px"
+                    android:layout_marginLeft="30px" />
+                <Button
+                    android:id="@+id/button8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.43"
+                    android:text="test"
+                    android:onClick="test"/>
+
+                <ImageView
+                    android:layout_width="80px"
+                    android:layout_height="80px"
+                    android:src="@drawable/add"
+                    android:id="@+id/imagePlus"
+                    android:onClick="Plus"
+                    android:layout_marginLeft="30px"/>
+
+            </LinearLayout>
+        </HorizontalScrollView>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20px">
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/placeText"
                 android:layout_weight="1"
-                android:hint="Nom Parc Où Jardinn" />
+                android:hint="Nom Parc Où Jardinn"
+                android:layout_marginRight="30px"/>
 
             <Button
-                android:text="Recherche"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="49dp"
+                android:background="@drawable/recherche2"
+                android:layout_height="32dp"
                 android:id="@+id/btnFind"
-                android:layout_weight="1"
-                android:onClick="search"/>
+                android:onClick="search"
+                android:layout_marginBottom="10px"
+                android:layout_marginRight="10px"/>
 
         </LinearLayout>
 
@@ -106,4 +152,6 @@
                 android:layout_weight="1" />
         </LinearLayout>
     </LinearLayout>
+
+
 </RelativeLayout>
