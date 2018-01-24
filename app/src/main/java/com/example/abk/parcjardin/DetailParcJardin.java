@@ -203,10 +203,7 @@ public class DetailParcJardin extends AppCompatActivity {
                     ImageView img = new ImageView(DetailParcJardin.this);
                     img.setImageDrawable(getResources().getDrawable(R.drawable.profil1));
                     img.setLayoutParams(new FrameLayout.LayoutParams(100,100));
-                    /*img.setScaleX(0.5f);
-                    img.setScaleY(0.5f);
-                    img.setLeft(1);
-                    img.setRight(1);*/
+                   
                     img.setScaleType(ImageView.ScaleType.FIT_START);
                     linearH.addView(img);
 
