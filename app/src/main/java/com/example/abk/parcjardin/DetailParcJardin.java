@@ -59,7 +59,7 @@ public class DetailParcJardin extends AppCompatActivity {
         text1 = (TextView)findViewById(R.id.latitude);
         text2 = (TextView)findViewById(R.id.logitude);
 
-        //Name = (TextView)findViewById(R.id.Name);
+        Name = (TextView)findViewById(R.id.Name);
         Horaire = (TextView)findViewById(R.id.Horaire);
         Addresse = (TextView)findViewById(R.id.Addresse);
         Description = (TextView)findViewById(R.id.Description);
@@ -104,7 +104,7 @@ public class DetailParcJardin extends AppCompatActivity {
         Service service = URLretrofit();
         LinearLayout ll2 = (LinearLayout) findViewById(R.id.imgCategories);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(10, 50, 10, 50);
+        layoutParams.setMargins(10, 20, 10, 5);
         //layoutParams.weight=80;
         layoutParams.width = 80;
         layoutParams.height=80;
@@ -151,7 +151,7 @@ public class DetailParcJardin extends AppCompatActivity {
         Service service = URLretrofit();
         LinearLayout ll2 = (LinearLayout) findViewById(R.id.imgLinear);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(10, 50, 10, 50);
+        layoutParams.setMargins(10, 20, 10, 50);
         //ll.setOrientation(LinearLayout.VERTICAL);
         ll2.removeAllViews(); //Ligne problèmatique
         ll2.removeAllViewsInLayout();

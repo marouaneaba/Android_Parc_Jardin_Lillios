@@ -6,6 +6,53 @@
     android:background="@drawable/background"
     >
 
+    <TextView
+        android:id="@+id/latitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/logitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#007f00"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/NmarParcJardin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.96"
+            android:fontFamily="georgia"
+            android:text="Parcs Jardins Lillios"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:typeface="monospace" />
+
+        <Button
+            android:id="@+id/iteneraire"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="end"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="10px"
+            android:background="@drawable/localiser"
+            android:fontFamily="casual"
+            android:onClick="iteneraire"
+            android:gravity="end"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
     <ScrollView
 
 
@@ -15,7 +62,7 @@
 
         <LinearLayout
 
-            android:layout_marginTop="100px"
+            android:layout_marginTop="0px"
             android:layout_marginLeft="40px"
             android:layout_marginRight="30px"
             android:id="@+id/linear"
@@ -23,52 +70,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/latitude"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="casual"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/logitude"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <TextView
-                    android:id="@+id/NmarParcJardin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.96"
-                    android:fontFamily="georgia"
-                    android:text="Parc Héron"
-                    android:textAlignment="center"
-                    android:textColor="#007f00"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:typeface="monospace" />
-
-                <Button
-                    android:id="@+id/iteneraire"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="end"
-                    android:layout_marginLeft="30px"
-                    android:layout_marginRight="10px"
-                    android:background="@drawable/localiser"
-                    android:fontFamily="casual"
-                    android:onClick="iteneraire"
-                    android:gravity="end"
-                    android:textAllCaps="false" />
-            </LinearLayout>
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
@@ -92,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.31"
                 android:layout_marginTop="0px"
-                android:layout_marginBottom="30px">
+                android:layout_marginBottom="0px">
 
                 <LinearLayout
                     android:id="@+id/imgLinear"
@@ -102,6 +103,17 @@
 
                 </LinearLayout>
             </HorizontalScrollView>
+
+            <TextView
+                android:text="Name "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Name"
+                android:fontFamily="cursive"
+                android:typeface="monospace"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textAlignment="center" />
 
             <RatingBar
 
