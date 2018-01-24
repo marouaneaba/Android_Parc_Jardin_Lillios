@@ -178,6 +178,8 @@ public class DetailParcJardin extends AppCompatActivity {
 
                     LinearLayout linearH = new LinearLayout(DetailParcJardin.this);
                     linearH.setOrientation(LinearLayout.HORIZONTAL);
+                    linearH.setBackgroundResource(R.drawable.return_com1_mar);
+                    //linearH.setBackgroundResource(R.drawable.back_comm_tra);
 
                     LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     //layoutParams.setMargins(0, 0, 0, 100);
@@ -215,17 +217,27 @@ public class DetailParcJardin extends AppCompatActivity {
                     //params.setMargins(10, 20, 30, 40);
 
 
-
+                    LinearLayout linearCommentaire = new LinearLayout(DetailParcJardin.this);
+                    linearCommentaire.setOrientation(LinearLayout.HORIZONTAL);
                     TextView d2 = new TextView( DetailParcJardin.this);
                     d2.setText(" commeantaire commeantaire commeantaire" +
                             "commeantaire commeantaire commeantaire" +
                             "commeantaire commeantaire commeantaire" +
                             "commeantaire commeantaire commeantaire" +
                             "commeantaire commeantaire commeantaire ");
-                    linear.addView(d2);
 
-                    ImageView imgLigne = new ImageView(DetailParcJardin.this);
-                    imgLigne.setImageDrawable(getResources().getDrawable(R.drawable.ligne));
+
+
+                    //d2.setPadding(1,0,0,0);
+                    LinearLayout.LayoutParams layoutParamsTextCOmmentaire = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    layoutParamsTextCOmmentaire.setMargins(0,40,0,0);
+                    //l,t,r,b
+                    //linearCommentaire.setBackgroundResource(R.drawable.back_comm_tra);
+                    //linearCommentaire.addView(d2,layoutParamsTextCOmmentaire);
+                    //linear.addView(linearCommentaire);
+                    linear.addView(d2,layoutParamsTextCOmmentaire);
+                    //ImageView imgLigne = new ImageView(DetailParcJardin.this);
+                    //imgLigne.setImageDrawable(getResources().getDrawable(R.drawable.ligne));
                     //imgLigne.setLayoutParams(new FrameLayout.LayoutParams(0,500));
 
                     /*img.setScaleX(0.5f);
@@ -233,7 +245,7 @@ public class DetailParcJardin extends AppCompatActivity {
                     img.setLeft(1);
                     img.setRight(1);*/
                     //img.setScaleType(ImageView.ScaleType.FIT_START);
-                    linear.addView(imgLigne);
+                    //linear.addView(imgLigne);
 
                     linearH.addView(linear);
                     ll2.addView(linearH);

@@ -5,6 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
 
     tools:context="com.example.abk.parcjardin.MainActivity"
     >
@@ -72,7 +73,7 @@
                     android:layout_height="match_parent"
                     android:src="@drawable/promoner"
                     android:id="@+id/imagePromoner"
-                    android:layout_marginBottom="15px"
+                    android:layout_marginBottom="20px"
                     android:layout_marginLeft="30px" />
                 <ImageView
                     android:layout_width="80px"
@@ -102,13 +103,7 @@
                     android:text="test"
                     android:onClick="test"/>
 
-                <ImageView
-                    android:layout_width="80px"
-                    android:layout_height="80px"
-                    android:src="@drawable/add"
-                    android:id="@+id/imagePlus"
-                    android:onClick="Plus"
-                    android:layout_marginLeft="30px"/>
+
 
             </LinearLayout>
         </HorizontalScrollView>

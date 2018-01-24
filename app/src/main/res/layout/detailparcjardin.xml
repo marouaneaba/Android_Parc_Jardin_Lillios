@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background3"
+    android:background="@drawable/background"
     >
 
     <ScrollView
 
 
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        style="@android:style/Widget.DeviceDefault.ScrollView">
 
         <LinearLayout
 
@@ -53,20 +54,28 @@
                 </LinearLayout>
             </HorizontalScrollView>
 
+            <TextView
+                android:text="Localiser : "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView"
+                android:layout_gravity="end"
+                android:layout_marginLeft="540px"
+                android:fontFamily="casual"
+                android:typeface="monospace"
+                android:textStyle="bold"
+                android:textSize="12sp" />
+
             <Button
                 android:id="@+id/iteneraire"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="42dp"
+                android:layout_height="72dp"
                 android:layout_marginLeft="30px"
-                android:layout_weight="0.56"
                 android:fontFamily="casual"
                 android:onClick="iteneraire"
-                android:text="Itenér.."
                 android:textAllCaps="false"
-                android:textSize="14sp"
-                android:textStyle="normal|bold"
-                android:typeface="monospace"
-                android:layout_gravity="end"/>
+                android:layout_gravity="end"
+                android:background="@drawable/logo_brand"/>
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
@@ -89,19 +98,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
-                android:text="TextView"
+                android:text="Name :"
                 android:textStyle="normal|bold"
-                android:typeface="monospace" />
+                android:typeface="monospace"
+                android:textSize="14sp" />
 
             <RatingBar
+
                 android:id="@+id/ratingBar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="41dp"
                 android:numStars="5"
                 android:rating="4"
                 android:scaleY="0.5"
                 android:scaleX="0.5"
-                android:saveEnabled="true"/>
+                android:saveEnabled="true"
+                style="@android:style/Theme" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -114,8 +126,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="casual"
-                    android:text="TextView"
-                    android:typeface="monospace" />
+                    android:text="Horaire :"
+                    android:typeface="monospace"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/Horaire"
@@ -123,9 +137,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="casual"
-                    android:text="TextView"
+                    android:text="Horaire"
                     android:textStyle="bold"
-                    android:typeface="monospace" />
+                    android:typeface="monospace"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -139,8 +154,10 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="casual"
-                    android:text="TextView"
-                    android:typeface="monospace" />
+                    android:text="Addresse :"
+                    android:typeface="monospace"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/Addresse"
@@ -148,9 +165,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="casual"
-                    android:text="TextView"
+                    android:text="Addresse :"
                     android:textStyle="bold"
-                    android:typeface="monospace" />
+                    android:typeface="monospace"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -158,28 +176,38 @@
                 android:id="@+id/Description"
                 android:layout_width="match_parent"
                 android:layout_height="89dp"
-                android:text="TextView" />
+                android:text="Description"
+                android:fontFamily="casual"
+                android:typeface="monospace"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20px"
+                android:layout_marginLeft="60px"/>
+
+            <TextView
+                android:text="Donner un avis : "
+                android:layout_width="136dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="430px"
+                android:id="@+id/textView2"
+                android:fontFamily="casual"
+                android:typeface="monospace"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/button9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="440px"
+                android:layout_width="77dp"
+                android:layout_height="38dp"
+                android:layout_marginLeft="460px"
                 android:fontFamily="casual"
-                android:text="Donner un avis"
                 android:textAllCaps="false"
                 android:textSize="14sp"
                 android:textStyle="normal|bold"
                 android:typeface="monospace"
+                android:background="@drawable/commentaire2"
                 android:onClick="AjoutCommentaire"/>
 
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/horiz"
-                android:id="@+id/imageView"
-                android:scaleX="1"/>
 
             <LinearLayout
                 android:id="@+id/liner"
