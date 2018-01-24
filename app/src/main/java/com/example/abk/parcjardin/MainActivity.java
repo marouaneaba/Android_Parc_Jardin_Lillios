@@ -47,7 +47,6 @@ public class MainActivity extends FragmentActivity implements LocationListener {
     EditText placeText;
     double latitude = 0;
     double longitude = 0;
-    FragmentManager fm ;
     private int PROXIMITY_RADIUS = 5000;
     private List<ParcJardin> parcJardinP = new ArrayList<>();
 
@@ -70,7 +69,6 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 
 
-        fm = getSupportFragmentManager();
         placeText = (EditText) findViewById(R.id.placeText);
         Button btnFind = (Button) findViewById(R.id.btnFind);
         SupportMapFragment fragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap);
@@ -228,11 +226,6 @@ public class MainActivity extends FragmentActivity implements LocationListener {
         });
     }
 
-    public boolean Plus(View v){
-        DFragment dfragmenet = new DFragment();
-        dfragmenet.show(fm,"Autre Service : ");
-        return true;
-    }
 
     private boolean isGooglePlayServicesAvailable() {
         int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
@@ -284,6 +277,37 @@ public class MainActivity extends FragmentActivity implements LocationListener {
             }
         });
     }
+
+    public void getAllParc(){
+        Service service = URLretrofit();
+        service.getAllParc(new Callback<List<ParcJardin>>() {
+            @Override
+            public void success(List<ParcJardin> parcJardins, Response response) {
+                addPointMap(parcJardins);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Toast.makeText(getApplication(),"Error récupération Parc !!",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void getAllJardin(){
+        Service service = URLretrofit();
+        service.getAllJardin(new Callback<List<ParcJardin>>() {
+            @Override
+            public void success(List<ParcJardin> parcJardins, Response response) {
+                addPointMap(parcJardins);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Toast.makeText(getApplication(),"Error récupération Jardin !!",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     public void setParcJardin(List<ParcJardin> parcJardinns){
         //Toast.makeText(getApplication(),"size leee :  "+parcJardinns,Toast.LENGTH_SHORT).show();
@@ -364,18 +388,50 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
     }
 
-    public void Restauration(View v){
-        getParcJardinByService("restauration");
+
+    public void Parc(View v){
+        Toast.makeText(getApplication(),"Tous les parcs",Toast.LENGTH_SHORT).show();
+        getAllParc();
     }
 
-    public void Etude(View v){
-        getParcJardinByService("Etude");
+    public void Jardin(View v){
+        Toast.makeText(getApplication(),"Tous les jardins",Toast.LENGTH_SHORT).show();
+        getAllJardin();
     }
 
     public void Sport(View v){
-        getParcJardinByService("Sport");
         Toast.makeText(getApplication(),"Sport",Toast.LENGTH_SHORT).show();
+        getParcJardinByService("Sport");
+    }
 
+    public void Etude(View v){
+        Toast.makeText(getApplication(),"Etude",Toast.LENGTH_SHORT).show();
+        getParcJardinByService("Etude");
+    }
+
+    public void restauration(View v){
+        Toast.makeText(getApplication(),"Restauration",Toast.LENGTH_SHORT).show();
+        getParcJardinByService("Restauration");
+    }
+
+    public void promoner(View v){
+        Toast.makeText(getApplication(),"Promoner",Toast.LENGTH_SHORT).show();
+        getParcJardinByService("Promoner");
+    }
+
+    public void Ecouter(View v){
+        Toast.makeText(getApplication(),"Ecouter",Toast.LENGTH_SHORT).show();
+        getParcJardinByService("Ecouter");
+    }
+
+    public void observer(View v){
+        Toast.makeText(getApplication(),"Observer",Toast.LENGTH_SHORT).show();
+        getParcJardinByService("Observer");
+    }
+
+    public void Tout(View v){
+        Toast.makeText(getApplication(),"Tout parcs & jardins",Toast.LENGTH_SHORT).show();
+        getAllParcJardin();
     }
 
 }

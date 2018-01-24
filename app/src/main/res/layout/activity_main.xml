@@ -35,37 +35,39 @@
                     android:layout_height="80px"
                     android:src="@drawable/parc"
                     android:id="@+id/imageParc"
-                    android:layout_marginLeft="30px" />
+                    android:layout_marginLeft="30px"
+                    android:onClick="Parc"/>
                 <ImageView
                     android:layout_width="80px"
                     android:layout_height="80px"
                     android:src="@drawable/jardin"
                     android:id="@+id/imageJardin"
-                    android:layout_marginLeft="30px" />
+                    android:layout_marginLeft="30px"
+                    android:onClick="Jardin"/>
 
                 <ImageView
                     android:layout_width="80px"
                     android:layout_height="80px"
                     android:src="@drawable/footing"
                     android:id="@+id/imageSport"
-                    android:onClick="Sport"
-                    android:layout_marginLeft="20px"/>
+                    android:layout_marginLeft="20px"
+                    android:onClick="Sport"/>
 
                 <ImageView
                     android:layout_width="80px"
                     android:layout_height="80px"
                     android:src="@drawable/etude2"
                     android:id="@+id/imageEtude"
-                    android:onClick="Etude"
-                    android:layout_marginLeft="30px"/>
+                    android:layout_marginLeft="30px"
+                    android:onClick="Etude"/>
 
                 <ImageView
                     android:layout_width="80px"
                     android:layout_height="80px"
                     android:src="@drawable/restauration"
                     android:id="@+id/imageRestauration"
-                    android:onClick="Restauration"
-                    android:layout_marginLeft="30px"/>
+                    android:layout_marginLeft="30px"
+                    android:onClick="restauration"/>
 
 
                 <ImageView
@@ -74,19 +76,22 @@
                     android:src="@drawable/promoner"
                     android:id="@+id/imagePromoner"
                     android:layout_marginBottom="20px"
-                    android:layout_marginLeft="30px" />
+                    android:layout_marginLeft="30px"
+                    android:onClick="promoner"/>
                 <ImageView
                     android:layout_width="80px"
                     android:layout_height="80px"
                     android:src="@drawable/music"
                     android:id="@+id/imageEcouter"
-                    android:layout_marginLeft="30px" />
+                    android:layout_marginLeft="30px"
+                    android:onClick="Ecouter"/>
                 <ImageView
                     android:layout_width="80px"
                     android:layout_height="80px"
                     android:src="@drawable/observer"
                     android:id="@+id/imageObserver"
-                    android:layout_marginLeft="30px" />
+                    android:layout_marginLeft="30px"
+                    android:onClick="observer"/>
 
                 <ImageView
                     android:layout_width="80px"
@@ -94,7 +99,8 @@
                     android:src="@drawable/tou"
                     android:id="@+id/imageTout"
                     android:layout_marginRight="30px"
-                    android:layout_marginLeft="30px" />
+                    android:layout_marginLeft="30px"
+                    android:onClick="Tout"/>
                 <Button
                     android:id="@+id/button8"
                     android:layout_width="wrap_content"

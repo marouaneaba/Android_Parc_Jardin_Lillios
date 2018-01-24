@@ -49,6 +49,11 @@ public interface Service {
     @POST("/api/commentaireAjouter")
     void postCommentaire(@Field("commenaire") String commentairecd , Callback<List<Repo>> callback);
 
+    @GET("/api/Parc")
+    void getAllParc(Callback<List<ParcJardin>> callback);
+
+    @GET("/api/Jardin")
+    void getAllJardin(Callback<List<ParcJardin>> callback);
     /*
     *@GET("/api/para")
     * List searchRepos(@Query("g") String query) ==> /api/para?q=picasso
