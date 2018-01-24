@@ -71,11 +71,12 @@
                 android:layout_width="42dp"
                 android:layout_height="72dp"
                 android:layout_marginLeft="30px"
+                android:layout_marginRight="10px"
                 android:fontFamily="casual"
                 android:onClick="iteneraire"
                 android:textAllCaps="false"
                 android:layout_gravity="end"
-                android:background="@drawable/logo_brand"/>
+                android:background="@drawable/gps2"/>
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
