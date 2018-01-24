@@ -247,7 +247,7 @@ public class DetailParcJardin extends AppCompatActivity {
 
                     //d2.setPadding(1,0,0,0);
                     LinearLayout.LayoutParams layoutParamsTextCOmmentaire = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    layoutParamsTextCOmmentaire.setMargins(0,40,0,0);
+                    layoutParamsTextCOmmentaire.setMargins(0,20,0,0);
                     //l,t,r,b
                     //linearCommentaire.setBackgroundResource(R.drawable.back_comm_tra);
                     //linearCommentaire.addView(d2,layoutParamsTextCOmmentaire);
@@ -259,7 +259,7 @@ public class DetailParcJardin extends AppCompatActivity {
                     /**/
 
                     ImageView imgLine = new ImageView(DetailParcJardin.this);
-                    imgLine.setImageDrawable(getResources().getDrawable(R.drawable.line2c));
+                    imgLine.setImageDrawable(getResources().getDrawable(R.drawable.line_2_min));
                     //imgLine.setLayoutParams(new FrameLayout.LayoutParams(100,100));
 
                     //imgLine.setScaleType(ImageView.ScaleType.FIT_START);

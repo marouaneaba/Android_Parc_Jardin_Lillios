@@ -20,6 +20,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="georgia"
+            android:text="Parcs Jardins Lillios"
+            android:textAlignment="center"
+            android:background="#007f00"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:typeface="monospace" />
+
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

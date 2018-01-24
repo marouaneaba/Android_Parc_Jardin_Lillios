@@ -44,22 +44,22 @@
                 android:weightSum="1">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/NmarParcJardin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.96"
                     android:fontFamily="georgia"
                     android:text="Parc Héron"
                     android:textAlignment="center"
                     android:textColor="#007f00"
-                    android:textSize="20sp"
+                    android:textSize="22sp"
                     android:textStyle="bold"
-                    android:typeface="monospace"
-                    android:layout_weight="0.96" />
+                    android:typeface="monospace" />
 
                 <Button
                     android:id="@+id/iteneraire"
-                    android:layout_width="45dp"
-                    android:layout_height="30dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="end"
                     android:layout_marginLeft="30px"
                     android:layout_marginRight="10px"
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.31"
-                android:layout_marginTop="30px"
+                android:layout_marginTop="0px"
                 android:layout_marginBottom="0px">
 
                 <LinearLayout
@@ -91,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.31"
-                android:layout_marginTop="30px"
+                android:layout_marginTop="0px"
                 android:layout_marginBottom="30px">
 
                 <LinearLayout
@@ -181,8 +181,7 @@
                 android:typeface="monospace"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:layout_marginTop="20px"
-                android:layout_marginLeft="60px"/>
+                android:layout_marginTop="20px"/>
 
             <Button
                 android:id="@+id/button9"
