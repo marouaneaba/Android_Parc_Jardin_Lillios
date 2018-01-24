@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
+            android:maxLength="400"
             android:hint="Nom!!" />
 
     </LinearLayout>
@@ -44,5 +45,10 @@
         android:id="@+id/button6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ajouter !" />
+        android:fontFamily="casual"
+        android:text="Envoyer !"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textStyle="bold"
+        android:background="#81d29b"
+        android:typeface="monospace" />
 </LinearLayout>
