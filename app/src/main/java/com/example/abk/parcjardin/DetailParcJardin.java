@@ -59,7 +59,7 @@ public class DetailParcJardin extends AppCompatActivity {
         text1 = (TextView)findViewById(R.id.latitude);
         text2 = (TextView)findViewById(R.id.logitude);
 
-        Name = (TextView)findViewById(R.id.Name);
+        //Name = (TextView)findViewById(R.id.Name);
         Horaire = (TextView)findViewById(R.id.Horaire);
         Addresse = (TextView)findViewById(R.id.Addresse);
         Description = (TextView)findViewById(R.id.Description);
@@ -194,7 +194,7 @@ public class DetailParcJardin extends AppCompatActivity {
 
                     LinearLayout linearH = new LinearLayout(DetailParcJardin.this);
                     linearH.setOrientation(LinearLayout.HORIZONTAL);
-                    linearH.setBackgroundResource(R.drawable.return_com1_mar);
+                    //linearH.setBackgroundResource(R.drawable.return_com1_mar);
                     //linearH.setBackgroundResource(R.drawable.back_comm_tra);
 
                     LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -203,7 +203,7 @@ public class DetailParcJardin extends AppCompatActivity {
                     ImageView img = new ImageView(DetailParcJardin.this);
                     img.setImageDrawable(getResources().getDrawable(R.drawable.profil1));
                     img.setLayoutParams(new FrameLayout.LayoutParams(100,100));
-                   
+
                     img.setScaleType(ImageView.ScaleType.FIT_START);
                     linearH.addView(img);
 
@@ -255,6 +255,16 @@ public class DetailParcJardin extends AppCompatActivity {
 
 
                     linear.addView(d2,layoutParamsTextCOmmentaire);
+
+                    /**/
+
+                    ImageView imgLine = new ImageView(DetailParcJardin.this);
+                    imgLine.setImageDrawable(getResources().getDrawable(R.drawable.line2c));
+                    //imgLine.setLayoutParams(new FrameLayout.LayoutParams(100,100));
+
+                    //imgLine.setScaleType(ImageView.ScaleType.FIT_START);
+                    linear.addView(imgLine);
+                    /**/
                     //ImageView imgLigne = new ImageView(DetailParcJardin.this);
                     //imgLigne.setImageDrawable(getResources().getDrawable(R.drawable.ligne));
                     //imgLigne.setLayoutParams(new FrameLayout.LayoutParams(0,500));

@@ -37,6 +37,39 @@
                 android:text="TextView" />
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="georgia"
+                    android:text="Parc Héron"
+                    android:textAlignment="center"
+                    android:textColor="#007f00"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:typeface="monospace"
+                    android:layout_weight="0.96" />
+
+                <Button
+                    android:id="@+id/iteneraire"
+                    android:layout_width="45dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="end"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="10px"
+                    android:background="@drawable/localiser"
+                    android:fontFamily="casual"
+                    android:onClick="iteneraire"
+                    android:gravity="end"
+                    android:textAllCaps="false" />
+            </LinearLayout>
+
             <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,30 +87,6 @@
                 </LinearLayout>
             </HorizontalScrollView>
 
-            <TextView
-                android:text="Localiser : "
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView"
-                android:layout_gravity="end"
-                android:layout_marginLeft="540px"
-                android:fontFamily="casual"
-                android:typeface="monospace"
-                android:textStyle="bold"
-                android:textSize="12sp" />
-
-            <Button
-                android:id="@+id/iteneraire"
-                android:layout_width="42dp"
-                android:layout_height="62dp"
-                android:layout_marginLeft="30px"
-                android:layout_marginRight="10px"
-                android:fontFamily="casual"
-                android:onClick="iteneraire"
-                android:textAllCaps="false"
-                android:layout_gravity="end"
-                android:background="@drawable/gps2"/>
-
             <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -93,16 +102,6 @@
 
                 </LinearLayout>
             </HorizontalScrollView>
-
-            <TextView
-                android:id="@+id/Name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="casual"
-                android:text="Name :"
-                android:textStyle="normal|bold"
-                android:typeface="monospace"
-                android:textSize="14sp" />
 
             <RatingBar
 
@@ -185,29 +184,21 @@
                 android:layout_marginTop="20px"
                 android:layout_marginLeft="60px"/>
 
-            <TextView
-                android:text="Donner un avis : "
-                android:layout_width="136dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="430px"
-                android:id="@+id/textView2"
-                android:fontFamily="casual"
-                android:typeface="monospace"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
             <Button
                 android:id="@+id/button9"
-                android:layout_width="77dp"
+                android:layout_width="131dp"
                 android:layout_height="38dp"
-                android:layout_marginLeft="460px"
+                android:layout_marginLeft="40px"
                 android:fontFamily="casual"
+                android:onClick="AjoutCommentaire"
+                android:text="Donner un avis"
                 android:textAllCaps="false"
                 android:textSize="14sp"
+                android:textColor="#ffffff"
+                android:background="#007f00"
                 android:textStyle="normal|bold"
-                android:typeface="monospace"
-                android:background="@drawable/commentaire2"
-                android:onClick="AjoutCommentaire"/>
+                android:layout_gravity="end"
+                android:typeface="monospace" />
 
 
             <LinearLayout
