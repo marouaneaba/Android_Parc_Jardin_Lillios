@@ -44,12 +44,12 @@ public interface Service {
 	@GET("/api/categorieByPJ/{parcJardinn}")
 	void getCategorieByParcJardinn(@Path("parcJardinn") String ParcJardin,Callback<List<Categorie>> callback);
 
-     @GET("/api/CommentairesByParcJardinn/{parcJardin}")
-     void getCommenatiresByParcJardin(@Path("parcJardinn") String ParcJardin,Callback<List<Commentaire>> callback);
+    @GET("/api/CommentaireByPJ/{ParcJardin}")
+    void getCommenatiresByParcJardin(@Path("ParcJardin") String ParcJardin,Callback<List<Commentaire>> callback);
 
-    @POST("/api/commentaireAjouter")
+    @POST("/api/Commentaire")
     @FormUrlEncoded
-    String postCommentaire(@Field("name")String Name, @Field("nbrEtoile")int nbrEtoile, @Field("commenaire") String commentaire);
+    String postCommentaire(@Field("name")String Name, @Field("nbrEtoile")int nbrEtoile, @Field("commentaire") String commentaire,@Field("id") Long id);
 
     @GET("/api/Parc")
     void getAllParc(Callback<List<ParcJardin>> callback);
