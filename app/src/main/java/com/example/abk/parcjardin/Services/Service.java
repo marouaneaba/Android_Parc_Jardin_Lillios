@@ -22,7 +22,7 @@ import retrofit.Callback;
 
 public interface Service {
 
-    public static final String ENDPOINT = "http://env-4431942.hidora.com";//"https://api.github.com";
+    public static final String ENDPOINT = "http://env-2321100.hidora.com";//"https://api.github.com";
 
 
     @GET("/api/Categorie")
@@ -44,7 +44,7 @@ public interface Service {
 	void getCategorieByParcJardinn(@Path("parcJardinn") String ParcJardin,Callback<List<Categorie>> callback);
 
      @GET("/api/CommentairesByParcJardinn/{parcJardin}")
-     void getCommenatiresByParcJardin(@Path("parcJardinn") String ParcJardin,Callback<List<ParcJardin>> callback);
+     void getCommenatiresByParcJardin(@Path("parcJardinn") String ParcJardin,Callback<List<Commentaire>> callback);
 
     @POST("/api/commentaireAjouter")
     void postCommentaire(@Field("commenaire") String commentairecd , Callback<List<Repo>> callback);
@@ -54,6 +54,9 @@ public interface Service {
 
     @GET("/api/Jardin")
     void getAllJardin(Callback<List<ParcJardin>> callback);
+
+    @GET("/api/imagesParcJardin/{ParcJardin}")
+    void getImagesParcJardin(@Path("ParcJardin") String ParcJardin,Callback<List<String>> callback);
     /*
     *@GET("/api/para")
     * List searchRepos(@Query("g") String query) ==> /api/para?q=picasso

@@ -122,8 +122,8 @@ public class MainActivity extends FragmentActivity implements LocationListener {
         Object[] toPass = new Object[1];
         toPass[0] = googleMap;
         googlePlacesReadTask.execute(toPass);*/
-
-        getAllParcJardin();
+        getParcJardinByService("Tout");
+        //getAllParcJardin();
         /*if(this.parcJardinP != null)
             Toast.makeText(getApplication(),"size marouane: "+this.parcJardinP.size(),Toast.LENGTH_SHORT).show();
         else
@@ -391,17 +391,19 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
     public void Parc(View v){
         Toast.makeText(getApplication(),"Tous les parcs",Toast.LENGTH_SHORT).show();
-        getAllParc();
+        //getAllParc();
+        getParcJardinByService("Parc");
     }
 
     public void Jardin(View v){
         Toast.makeText(getApplication(),"Tous les jardins",Toast.LENGTH_SHORT).show();
-        getAllJardin();
+        //getAllJardin();
+        getParcJardinByService("Jardin");
     }
 
     public void Sport(View v){
         Toast.makeText(getApplication(),"Sport",Toast.LENGTH_SHORT).show();
-        getParcJardinByService("Sport");
+        getParcJardinByService("FOOTING");
     }
 
     public void Etude(View v){
@@ -431,7 +433,8 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
     public void Tout(View v){
         Toast.makeText(getApplication(),"Tout parcs & jardins",Toast.LENGTH_SHORT).show();
-        getAllParcJardin();
+        //getAllParcJardin();
+        getParcJardinByService("Tout");
     }
 
 }

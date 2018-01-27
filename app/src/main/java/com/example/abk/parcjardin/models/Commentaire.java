@@ -9,11 +9,20 @@ public class Commentaire {
     private Long id;
     private String commentaire;
     private boolean confirmer;
+    private String Name;
 
 
     public Commentaire(String commentaire,boolean confirmer){
         this.commentaire = commentaire;
         this.confirmer = confirmer;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
     }
 
     public Long getId() {
@@ -45,7 +54,7 @@ public class Commentaire {
         return "Commentaire{" +
                 "id=" + id +
                 ", commentaire='" + commentaire + '\'' +
-                ", confirmer=" + confirmer +
+                ", confirmer=" + confirmer +", Name="+Name+
                 '}';
     }
 }

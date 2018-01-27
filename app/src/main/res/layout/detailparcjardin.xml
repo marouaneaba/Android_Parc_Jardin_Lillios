@@ -24,6 +24,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="#007f00"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:weightSum="1">
 
         <TextView
@@ -35,7 +37,7 @@
             android:text="Parcs Jardins Lillios"
             android:textAlignment="center"
             android:textColor="#ffffff"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:typeface="monospace" />
 
@@ -111,7 +113,7 @@
                 android:id="@+id/Name"
                 android:fontFamily="cursive"
                 android:typeface="monospace"
-                android:textSize="24sp"
+                android:textSize="28sp"
                 android:textStyle="bold"
                 android:textAlignment="center" />
 
