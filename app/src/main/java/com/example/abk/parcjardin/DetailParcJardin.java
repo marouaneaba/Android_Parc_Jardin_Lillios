@@ -1,17 +1,12 @@
 package com.example.abk.parcjardin;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -20,14 +15,12 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.abk.parcjardin.Services.CommentaireFragment;
 import com.example.abk.parcjardin.Services.Service;
 import com.example.abk.parcjardin.models.Categorie;
 import com.example.abk.parcjardin.models.Commentaire;
 import com.example.abk.parcjardin.models.ParcJardin;
 import com.squareup.picasso.Picasso;
 
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +36,7 @@ import retrofit.client.Response;
 public class DetailParcJardin extends AppCompatActivity {
 
 
-    private TextView text1;
+    private TextView text1,plus;
     private TextView text2;
     private Double latitude;
     private Double longitude;
@@ -67,9 +60,11 @@ public class DetailParcJardin extends AppCompatActivity {
         setContentView(R.layout.detailparcjardin);
 
         fm = getSupportFragmentManager();
-        text1 = (TextView)findViewById(R.id.latitude);
-        text2 = (TextView)findViewById(R.id.logitude);
 
+
+        plus = (TextView)findViewById(R.id.plus);
+        String htmlString = "<u>Plus</u>";
+        plus.setText(Html.fromHtml(htmlString));
         Name = (TextView)findViewById(R.id.Name);
         Horaire = (TextView)findViewById(R.id.Horaire);
         Addresse = (TextView)findViewById(R.id.Addresse);
@@ -79,8 +74,7 @@ public class DetailParcJardin extends AppCompatActivity {
         latitude = Double.parseDouble(intent.getStringExtra("latitude"));
         longitude = Double.parseDouble(intent.getStringExtra("longitude"));
 
-        text1.setText(latitude.toString());
-        text2.setText(longitude.toString());
+
         //getParcJardinByLatitudeLongitude(latitude,longitude);
         Actualiser(latitude,longitude);
         //getCommentaireJardinParc("NameParcJardin");
@@ -241,22 +235,38 @@ public class DetailParcJardin extends AppCompatActivity {
 
             //img.setImageDrawable(getResources().getDrawable(R.drawable.man2));
             img.setLayoutParams(new FrameLayout.LayoutParams(500,350));
+            img.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    DFragment dfFragment = new DFragment();
+                    dfFragment.setMessage("https://www.salford.ac.uk/__data/assets/image/0008/890072/varieties/lightbox.jpg");
+                    dfFragment.show(fm,"Big Image");
+                    return false;
+                }
+            });
             //img.setPadding(2,2,2,2);
             //img.setMinimumWidth(50);
             //img.setMaxWidth(50);
             //img.setScaleType(ImageView.ScaleType.FIT_START);
             ll2.addView(img);
+            ImageView imgLine = new ImageView(DetailParcJardin.this);
+            imgLine.setImageDrawable(getResources().getDrawable(R.drawable.line2h));
+            ll2.addView(imgLine);
         }
 
 
     }
+
     public void getCommentaireJardinParc(String NameParcJardin){
 
         Service service = URLretrofit();
         service.getCommenatiresByParcJardin(NameParcJardin, new Callback<List<Commentaire>>() {
             @Override
             public void success(List<Commentaire> commentaires, Response response) {
-                description = new TextView( DetailParcJardin.this);
+
+                Toast.makeText(getApplication(),"OUI COMMENTAIRE ARRIVE !!",Toast.LENGTH_SHORT).show();
+
+                /*description = new TextView( DetailParcJardin.this);
                 LinearLayout ll2 = (LinearLayout) findViewById(R.id.liner);
                 ll2.removeAllViews(); //Ligne problèmatique
                 ll2.removeAllViewsInLayout();
@@ -306,11 +316,11 @@ public class DetailParcJardin extends AppCompatActivity {
                     ImageView imgLine = new ImageView(DetailParcJardin.this);
                     imgLine.setImageDrawable(getResources().getDrawable(R.drawable.line_2_min));
                     linear.addView(imgLine);
-                    /**/
+
 
                     linearH.addView(linear);
                     ll2.addView(linearH);
-                }
+                }*/
             }
 
             @Override
@@ -361,10 +371,16 @@ public class DetailParcJardin extends AppCompatActivity {
 
                     RatingBar rating = new RatingBar(DetailParcJardin.this);
                     rating.setScaleX(0.5f);
-                    rating.setScaleY(0.4f);
+                    rating.setScaleY(0.5f);
                     rating.setNumStars(5);
-                    rating.setEnabled(false);
-                    linear.addView(rating);
+                    rating .setMax(5);
+                    rating.setEnabled(true);
+                    rating.setMinimumHeight(5);
+                    //rating.setPadding(1,0,1,0);//.layout(1,1,1,1);
+                    rating.setRating(3.5f);
+                    LinearLayout.LayoutParams layoutParamsRating = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    layoutParamsRating.setMarginStart(85);
+                    linear.addView(rating,layoutParamsRating);
 
                     //params.setMargins(10, 20, 30, 40);
 
@@ -381,11 +397,11 @@ public class DetailParcJardin extends AppCompatActivity {
                             "commeantaire commeantaire commeantaire" +
                             "commeantaire commeantaire commeantaire ");
 
-                    d2.setPadding(40,0,1,0);
+                    //d2.setPadding(0,0,0,0);
 
                     //d2.setPadding(1,0,0,0);
-                    LinearLayout.LayoutParams layoutParamsTextCOmmentaire = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    layoutParamsTextCOmmentaire.setMargins(0,20,0,0);
+                    LinearLayout.LayoutParams layoutParamsTextCOmmentaire = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    //layoutParamsTextCOmmentaire.setMargins(0,0,0,0);
                     //l,t,r,b
                     //linearCommentaire.setBackgroundResource(R.drawable.back_comm_tra);
                     //linearCommentaire.addView(d2,layoutParamsTextCOmmentaire);
@@ -393,7 +409,7 @@ public class DetailParcJardin extends AppCompatActivity {
 
 
                     linear.addView(d2,layoutParamsTextCOmmentaire);
-
+                    //linear.addView(d2);
                     /**/
 
                     ImageView imgLine = new ImageView(DetailParcJardin.this);
@@ -440,6 +456,12 @@ public class DetailParcJardin extends AppCompatActivity {
          return service.getParcJardinLatitudeLongitude(latitude,longitude);
     }*/
 
+
+    public void Plus(View v){
+        DescriptionFragment des = new DescriptionFragment();
+        des.setDescription(Description.getText().toString());
+        des.show(fm,"description : ");
+    }
 
     public void iteneraire(View v){
         Intent mapIntent = new Intent(Intent.ACTION_VIEW,

@@ -13,9 +13,11 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.abk.parcjardin.Services.Service;
@@ -48,6 +50,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
     double latitude = 0;
     double longitude = 0;
     private int PROXIMITY_RADIUS = 5000;
+    private SearchView mSearchView;
     private List<ParcJardin> parcJardinP = new ArrayList<>();
 
 
@@ -70,7 +73,9 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 
         placeText = (EditText) findViewById(R.id.placeText);
-        Button btnFind = (Button) findViewById(R.id.btnFind);
+        //Button btnFind = (Button) findViewById(R.id.btnFind);
+        mSearchView = (SearchView) findViewById(R.id.searchV);
+
         SupportMapFragment fragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap);
         googleMap = fragment.getMap();
         googleMap.setMyLocationEnabled(true);
@@ -144,28 +149,42 @@ public class MainActivity extends FragmentActivity implements LocationListener {
             }
         });
 
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Service service = URLretrofit();
+                Toast.makeText(getApplication(),"Vous chercher m : "+query,Toast.LENGTH_SHORT).show();
+                service.getParcJardinnSearch(query, new Callback<List<ParcJardin>>() {
+                    @Override
+                    public void success(List<ParcJardin> parcJardins, Response response) {
+                        if(parcJardins == null || parcJardins.size() == 0 ){
+                            Toast.makeText(getApplication(),"Parc Ou Jardin n'existe pas !! ",Toast.LENGTH_SHORT).show();
+                        }else{
+                            addPointMap(parcJardins);
+                        }
+                        Toast.makeText(getApplication(),"Parc Search : "+parcJardins.get(0).getName(),Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Toast.makeText(getApplication(),"Parc Ou Jardin n'existe pas !! ",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
         //getCategorie();
         //getCommeantaire();
         //sendPOST();
 
     }
 
-    public void test(View v){
-        Intent intent = new Intent(MainActivity.this, DetailParcJardin.class);
-        intent.putExtra("latitude", "1.2");
-        intent.putExtra("longitude", "30.6");
-        startActivity(intent);
-    }
-    public void addPointMap(List<ParcJardin> parcJardins){
-
-        GooglePlacesReadTask googlePlacesReadTask = new GooglePlacesReadTask();
-        Object[] toPass = new Object[2];
-        toPass[0] = googleMap;
-        toPass[1] = parcJardins;
-        googlePlacesReadTask.execute(toPass);
-    }
-
-    public void search(View v){
+    /*public void search(View v){
         String search = placeText.getText().toString();
         Service service = URLretrofit();
         service.getParcJardinnSearch("search",new Callback<List<ParcJardin>>() {
@@ -184,7 +203,24 @@ public class MainActivity extends FragmentActivity implements LocationListener {
                 Toast.makeText(getApplication(),"Parc Ou Jardin n'existe pas !! ",Toast.LENGTH_SHORT).show();
             }
         });
+    }*/
+
+    public void test(View v){
+        Intent intent = new Intent(MainActivity.this, DetailParcJardin.class);
+        intent.putExtra("latitude", "1.2");
+        intent.putExtra("longitude", "30.6");
+        startActivity(intent);
     }
+    public void addPointMap(List<ParcJardin> parcJardins){
+
+        GooglePlacesReadTask googlePlacesReadTask = new GooglePlacesReadTask();
+        Object[] toPass = new Object[2];
+        toPass[0] = googleMap;
+        toPass[1] = parcJardins;
+        googlePlacesReadTask.execute(toPass);
+    }
+
+
 
     public void getParcJardinByService(final String serviceName){
 

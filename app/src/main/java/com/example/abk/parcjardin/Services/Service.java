@@ -10,6 +10,7 @@ import java.util.List;
 
 import retrofit.Callback;
 import retrofit.http.Field;
+import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.Path;
@@ -47,7 +48,8 @@ public interface Service {
      void getCommenatiresByParcJardin(@Path("parcJardinn") String ParcJardin,Callback<List<Commentaire>> callback);
 
     @POST("/api/commentaireAjouter")
-    void postCommentaire(@Field("commenaire") String commentairecd , Callback<List<Repo>> callback);
+    @FormUrlEncoded
+    String postCommentaire(@Field("name")String Name, @Field("nbrEtoile")int nbrEtoile, @Field("commenaire") String commentaire);
 
     @GET("/api/Parc")
     void getAllParc(Callback<List<ParcJardin>> callback);

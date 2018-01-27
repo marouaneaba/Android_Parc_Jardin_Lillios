@@ -7,14 +7,26 @@ package com.example.abk.parcjardin.models;
 public class Commentaire {
 
     private Long id;
+    private String Name;
+    private int nbrEtoile;
     private String commentaire;
     private boolean confirmer;
-    private String Name;
 
 
-    public Commentaire(String commentaire,boolean confirmer){
-        this.commentaire = commentaire;
-        this.confirmer = confirmer;
+
+    public Commentaire(String sName,int sNumeEtoile,String sCommentaire,boolean sConfirmer){
+        this.Name = sName;
+        this.nbrEtoile = sNumeEtoile;
+        this.commentaire = sCommentaire;
+        this.confirmer = sConfirmer;
+    }
+
+    public int getNbrEtoile() {
+        return nbrEtoile;
+    }
+
+    public void setNbrEtoile(int nbrEtoile) {
+        this.nbrEtoile = nbrEtoile;
     }
 
     public String getName() {
