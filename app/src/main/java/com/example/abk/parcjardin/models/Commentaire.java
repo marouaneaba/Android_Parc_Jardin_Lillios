@@ -7,7 +7,7 @@ package com.example.abk.parcjardin.models;
 public class Commentaire {
 
     private Long id;
-    private String Name;
+    private String name;
     private int nbrEtoile;
     private String commentaire;
     private boolean confirmer;
@@ -15,7 +15,7 @@ public class Commentaire {
 
 
     public Commentaire(String sName,int sNumeEtoile,String sCommentaire,boolean sConfirmer){
-        this.Name = sName;
+        this.name = sName;
         this.nbrEtoile = sNumeEtoile;
         this.commentaire = sCommentaire;
         this.confirmer = sConfirmer;
@@ -30,11 +30,11 @@ public class Commentaire {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        name = name;
     }
 
     public Long getId() {
@@ -66,7 +66,7 @@ public class Commentaire {
         return "Commentaire{" +
                 "id=" + id +
                 ", commentaire='" + commentaire + '\'' +
-                ", confirmer=" + confirmer +", Name="+Name+
+                ", confirmer=" + confirmer +", Name="+name+" , nbrEtoile="+nbrEtoile+
                 '}';
     }
 }

@@ -266,7 +266,7 @@ public class DetailParcJardin extends AppCompatActivity {
 
                 Toast.makeText(getApplication(),"OUI COMMENTAIRE ARRIVE !!",Toast.LENGTH_SHORT).show();
 
-                /*description = new TextView( DetailParcJardin.this);
+                description = new TextView( DetailParcJardin.this);
                 LinearLayout ll2 = (LinearLayout) findViewById(R.id.liner);
                 ll2.removeAllViews(); //Ligne problèmatique
                 ll2.removeAllViewsInLayout();
@@ -300,19 +300,22 @@ public class DetailParcJardin extends AppCompatActivity {
 
                     RatingBar rating = new RatingBar(DetailParcJardin.this);
                     rating.setScaleX(0.5f);
-                    rating.setScaleY(0.4f);
-                    rating.setNumStars(5);
+                    rating.setScaleY(0.5f);
+                    rating.setRating(commentaires.get(i).getNbrEtoile());//.setNumStars(2);
                     rating.setEnabled(false);
-                    linear.addView(rating);
+                    LinearLayout.LayoutParams layoutParamsRating = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    layoutParamsRating.setMarginStart(85);
+                    linear.addView(rating,layoutParamsRating);
                     TextView d2 = new TextView( DetailParcJardin.this);
                     d2.setText(commentaires.get(i).getCommentaire());
 
                     d2.setPadding(40,0,1,0);
-                    LinearLayout.LayoutParams layoutParamsTextCOmmentaire = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    layoutParamsTextCOmmentaire.setMargins(0,20,0,0);
+                    //LinearLayout.LayoutParams layoutParamsTextCOmmentaire = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    //layoutParamsTextCOmmentaire.setMargins(0,0,0,0);
                     //l,t,r,b
 
-                    linear.addView(d2,layoutParamsTextCOmmentaire);
+                    //linear.addView(d2,layoutParamsTextCOmmentaire);
+                    linear.addView(d2);
                     ImageView imgLine = new ImageView(DetailParcJardin.this);
                     imgLine.setImageDrawable(getResources().getDrawable(R.drawable.line_2_min));
                     linear.addView(imgLine);
@@ -320,7 +323,8 @@ public class DetailParcJardin extends AppCompatActivity {
 
                     linearH.addView(linear);
                     ll2.addView(linearH);
-                }*/
+                    Toast.makeText(getApplication(),"comemntaire :11 "+commentaires.get(i),Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

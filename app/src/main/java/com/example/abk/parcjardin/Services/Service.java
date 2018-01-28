@@ -49,7 +49,7 @@ public interface Service {
 
     @POST("/api/Commentaire")
     @FormUrlEncoded
-    String postCommentaire(@Field("name")String Name, @Field("nbrEtoile")int nbrEtoile, @Field("commentaire") String commentaire,@Field("id") Long id);
+    void postCommentaire(@Field("name")String Name, @Field("nbrEtoile")int nbrEtoile, @Field("commentaire") String commentaire,@Field("id") int id,Callback<String> callback);
 
     @GET("/api/Parc")
     void getAllParc(Callback<List<ParcJardin>> callback);
