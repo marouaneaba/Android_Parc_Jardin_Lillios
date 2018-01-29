@@ -76,6 +76,8 @@ public class MainActivity extends FragmentActivity implements LocationListener {
         //Button btnFind = (Button) findViewById(R.id.btnFind);
         mSearchView = (SearchView) findViewById(R.id.searchV);
 
+
+        mSearchView.setIconifiedByDefault(false);
         SupportMapFragment fragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap);
         googleMap = fragment.getMap();
         googleMap.setMyLocationEnabled(true);

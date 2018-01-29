@@ -46,10 +46,14 @@ public interface Service {
 
     @GET("/api/CommentaireByPJ/{ParcJardin}")
     void getCommenatiresByParcJardin(@Path("ParcJardin") String ParcJardin,Callback<List<Commentaire>> callback);
-
+/*
     @POST("/api/Commentaire")
     @FormUrlEncoded
     void postCommentaire(@Field("name")String Name, @Field("nbrEtoile")int nbrEtoile, @Field("commentaire") String commentaire,@Field("id") int id,Callback<String> callback);
+*/
+    @POST("/api/PostCommentaire/{name}/{nbrEtoile}/{commentaire}")
+    void PostCommentaire(@Path("name")String Name, @Path("nbrEtoile")int nbrEtoile, @Path("commentaire") String commentaire,Callback<String> callback);
+
 
     @GET("/api/Parc")
     void getAllParc(Callback<List<ParcJardin>> callback);

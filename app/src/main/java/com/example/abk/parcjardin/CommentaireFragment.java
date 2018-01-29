@@ -98,10 +98,10 @@ public class CommentaireFragment extends DialogFragment {
         commentaireS = Commentaire.getText().toString().trim();
         nbrEtoileI = etoile.getNumStars();
 
-        service.postCommentaire("ae",3,"rt",8, new Callback<String>() {
+        service.PostCommentaire(nameS,nbrEtoileI,commentaireS, new Callback<String>() {
             @Override
             public void success(String s, Response response) {
-                Toast.makeText(getContext(),"Post Commentaire : "+s,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Post Commentaire : récus"+s,Toast.LENGTH_SHORT).show();
             }
 
             @Override

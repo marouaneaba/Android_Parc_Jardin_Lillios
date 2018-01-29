@@ -40,7 +40,7 @@ public class GooglePlacesReadTask extends AsyncTask<Object, Integer, GoogleMap> 
     protected void onPostExecute(GoogleMap map) {
 
         map.clear();
-        List<LatLng> LatLngs = new ArrayList<>();
+        //List<LatLng> LatLngs = new ArrayList<>();
         /*for(int i=0;i<parcJardinns.size();i++){
             LatLngs.add(new LatLng(parcJardinns.get(i).getL(),parcJardinns.get(i).getG()));
         }*/
@@ -57,10 +57,10 @@ public class GooglePlacesReadTask extends AsyncTask<Object, Integer, GoogleMap> 
             MarkerOptions markerOptions = new MarkerOptions();
             LatLng mLatLng = new LatLng(parcJardinns.get(i).getL(),parcJardinns.get(i).getG());
             markerOptions.position(mLatLng);
-            if(parcJardinns.get(i).getType().equals("parc")){
-                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.parc));
-            }else if(parcJardinns.get(i).equals("jardin")){
-                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.jardin));
+            if(parcJardinns.get(i).getType().toUpperCase().equals("PARC")){
+                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.map_arbre_resize));
+            }else if(parcJardinns.get(i).getType().toUpperCase().equals("JARDIN")){
+                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.parc_map_resize4));
             }
 
             //markerOptions.title(placeName + " : " + vicinity);
