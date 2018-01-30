@@ -72,7 +72,9 @@ public class CommentaireFragment extends DialogFragment {
                 EnvoyerPost();
             }
         });
-            setCancelable(true);
+
+        setCancelable(true);
+
         return view;
     }
 
@@ -98,10 +100,10 @@ public class CommentaireFragment extends DialogFragment {
         commentaireS = Commentaire.getText().toString().trim();
         nbrEtoileI = etoile.getNumStars();
 
-        service.PostCommentaire(nameS,nbrEtoileI,commentaireS, new Callback<String>() {
+        service.PostCommentaire(nameS,nbrEtoileI,commentaireS, new Callback<Commentaire>() {
             @Override
-            public void success(String s, Response response) {
-                Toast.makeText(getContext(),"Post Commentaire : récus"+s,Toast.LENGTH_SHORT).show();
+            public void success(Commentaire c, Response response) {
+                Toast.makeText(getContext(),"Post Commentaire : récus"+c,Toast.LENGTH_SHORT).show();
             }
 
             @Override
