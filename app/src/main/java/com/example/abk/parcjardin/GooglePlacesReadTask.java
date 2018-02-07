@@ -53,14 +53,15 @@ public class GooglePlacesReadTask extends AsyncTask<Object, Integer, GoogleMap> 
         LatLngs.add(new LatLng(50.612054,3.139113) );
         LatLngs.add(new LatLng(50.612156,3.139263) );
         */
+        if(parcJardinns != null)
         for (int i = 0; i < parcJardinns.size(); i++) {
             MarkerOptions markerOptions = new MarkerOptions();
             LatLng mLatLng = new LatLng(parcJardinns.get(i).getL(),parcJardinns.get(i).getG());
             markerOptions.position(mLatLng);
             if(parcJardinns.get(i).getType().toUpperCase().equals("PARC")){
-                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.map_arbre_resize));
-            }else if(parcJardinns.get(i).getType().toUpperCase().equals("JARDIN")){
                 markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.parc_map_resize4));
+            }else if(parcJardinns.get(i).getType().toUpperCase().equals("JARDIN")){
+                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.map_arbre_resize));
             }
 
             //markerOptions.title(placeName + " : " + vicinity);

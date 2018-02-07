@@ -23,7 +23,7 @@ import retrofit.Callback;
 
 public interface Service {
 
-    public static final String ENDPOINT = "http://env-2321100.hidora.com";//"https://api.github.com";
+    public static final String ENDPOINT = "https://fathomless-woodland-61246.herokuapp.com";//"http://env-2321100.hidora.com";//"https://api.github.com";
 
 
     @GET("/api/Categorie")

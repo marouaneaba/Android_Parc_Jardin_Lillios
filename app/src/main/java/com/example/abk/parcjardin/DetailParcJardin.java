@@ -45,6 +45,7 @@ public class DetailParcJardin extends AppCompatActivity {
     private List<ParcJardin> parcJardinsP;
     TextView description = null;
     FragmentManager fm ;
+    private String descriptionaff;
 
 
     public Service URLretrofit(){
@@ -92,7 +93,9 @@ public class DetailParcJardin extends AppCompatActivity {
                 //Horaire.setText(parcJardin.getHoraires().toString());
                 Addresse.setText(parcJardin.getAdresse());
                 Description.setText(parcJardin.getDescription());
-                setCategorie("parc");
+                descriptionaff = parcJardin.getDescription();
+                //setCategorie("parc");
+                setCategorie(parcJardin.getName());
                 setImageParcJardin("parc");
                 getCommentaireJardinParc("parc");
             }
@@ -231,15 +234,18 @@ public class DetailParcJardin extends AppCompatActivity {
 
             }*/
 
-            Picasso.with(getBaseContext()).load("https://www.salford.ac.uk/__data/assets/image/0008/890072/varieties/lightbox.jpg").into(img);
+            //Picasso.with(getBaseContext()).load("https://www.salford.ac.uk/__data/assets/image/0008/890072/varieties/lightbox.jpg").into(img);
+            Picasso.with(getBaseContext()).load("https://fathomless-woodland-61246.herokuapp.com/images/imageApp/image"+(i+1)+".jpg").into(img);
 
             //img.setImageDrawable(getResources().getDrawable(R.drawable.man2));
             img.setLayoutParams(new FrameLayout.LayoutParams(500,350));
+
             img.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
                     DFragment dfFragment = new DFragment();
-                    dfFragment.setMessage("https://www.salford.ac.uk/__data/assets/image/0008/890072/varieties/lightbox.jpg");
+                    dfFragment.setMessage("https://fathomless-woodland-61246.herokuapp.com/images/imageApp/image1.jpg");//"https://www.salford.ac.uk/__data/assets/image/0008/890072/varieties/lightbox.jpg");
+
                     dfFragment.show(fm,"Big Image");
                     return false;
                 }
@@ -463,7 +469,9 @@ public class DetailParcJardin extends AppCompatActivity {
 
     public void Plus(View v){
         DescriptionFragment des = new DescriptionFragment();
-        des.setDescription(Description.getText().toString());
+        //des.setDescription(Description.getText().toString());
+        des.setDescription(descriptionaff);
+
         des.show(fm,"description : ");
     }
 

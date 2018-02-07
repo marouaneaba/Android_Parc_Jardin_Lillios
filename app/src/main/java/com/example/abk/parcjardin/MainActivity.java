@@ -237,7 +237,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
             @Override
             public void failure(RetrofitError error) {
-                Toast.makeText(getApplication(),"Parc Ou Jardin n'existe pas !! ",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplication(),"Parc Ou Jardin n'existe pas !! : "+error,Toast.LENGTH_SHORT).show();
             }
         });
 

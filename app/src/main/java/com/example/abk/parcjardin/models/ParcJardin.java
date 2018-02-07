@@ -37,9 +37,6 @@ public class ParcJardin {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
 
     public String getDescription() {
         return description;
@@ -63,6 +60,10 @@ public class ParcJardin {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
