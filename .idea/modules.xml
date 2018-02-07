@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Android_Parc_Jardin_Lillios.iml" filepath="$PROJECT_DIR$/Android_Parc_Jardin_Lillios.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Android_Parc_Jardin_Lillios.iml" filepath="$PROJECT_DIR$/Android_Parc_Jardin_Lillios.iml" />
       <module fileurl="file://$PROJECT_DIR$/ParcJardin.iml" filepath="$PROJECT_DIR$/ParcJardin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

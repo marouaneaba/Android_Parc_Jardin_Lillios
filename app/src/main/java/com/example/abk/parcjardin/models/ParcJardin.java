@@ -15,12 +15,12 @@ public class ParcJardin {
     private double l;
     private double g;
     private String adresse;
-    List<Commentaire> commentaires;
+    List<Commentaire> commentaire;
     List<Horaire> horaire;
 
 
     public ParcJardin(String name,String description,String type,
-                      double L,double G,String addresse,List<Commentaire> commentaires,
+                      double L,double G,String addresse,List<Commentaire> commentaire,
                       List<Horaire> horaires){
         this.name = name;
         this.description = description;
@@ -28,7 +28,7 @@ public class ParcJardin {
         this.l = L;
         this.g = G;
         this.adresse = addresse;
-        this.commentaires = commentaires;
+        this.commentaire = commentaire;
         this.horaire = horaires;
     }
 
@@ -89,12 +89,20 @@ public class ParcJardin {
         this.adresse = adresse;
     }
 
-    public List<Commentaire> getCommentaires() {
-        return commentaires;
+    public List<Commentaire> getCommentaire() {
+        return commentaire;
     }
 
-    public void setCommentaires(List<Commentaire> commentaires) {
-        this.commentaires = commentaires;
+    public void setCommentaire(List<Commentaire> commentaire) {
+        this.commentaire = commentaire;
+    }
+
+    public List<Horaire> getHoraire() {
+        return horaire;
+    }
+
+    public void setHoraire(List<Horaire> horaire) {
+        this.horaire = horaire;
     }
 
     public List<Horaire> getHoraires() {
@@ -115,7 +123,7 @@ public class ParcJardin {
                 ", L=" + l +
                 ", G=" + g +
                 ", adresse='" + adresse + '\'' +
-                ", commentaires=" + commentaires +
+                ", commentaires=" + commentaire +
                 ", horaires=" + horaire +
                 '}';
     }
