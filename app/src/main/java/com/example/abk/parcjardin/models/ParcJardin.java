@@ -8,54 +8,30 @@ import java.util.List;
 
 public class ParcJardin {
 
+
     private Long id;
     private String name;
     private String description;
     private String type;  // parc ou jardin
-    private double l;
-    private double g;
+    private String l;
+    private String g;
     private String adresse;
-    List<Commentaire> commentaires;
-    List<Horaire> horaire;
+    private List<java.lang.String> nameImage;
+    private List<Categorie> categories;
 
+    public ParcJardin(){}
 
-    public ParcJardin(String name,String description,String type,
-                      double L,double G,String addresse,List<Commentaire> commentaires,
-                      List<Horaire> horaires){
+    public ParcJardin(String name, String description, String type, String l, String g, String adresse) {
         this.name = name;
         this.description = description;
         this.type = type;
-        this.l = L;
-        this.g = G;
-        this.adresse = addresse;
-        this.commentaires = commentaires;
-        this.horaire = horaires;
+        this.l = l;
+        this.g = g;
+        this.adresse = adresse;
     }
-
 
     public Long getId() {
         return id;
-    }
-
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public double getL() {
-        return l;
-    }
-
-    public double getG() {
-        return g;
-    }
-
-    public String getAdresse() {
-        return adresse;
     }
 
     public void setId(Long id) {
@@ -70,40 +46,60 @@ public class ParcJardin {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public void setType(String type) {
         this.type = type;
     }
 
-    public void setL(double l) {
-        l = l;
+    public String getL() {
+        return l;
     }
 
-    public void setG(double g) {
-        g = g;
+    public void setL(String l) {
+        this.l = l;
+    }
+
+    public String getG() {
+        return g;
+    }
+
+    public void setG(String g) {
+        this.g = g;
+    }
+
+    public String getAdresse() {
+        return adresse;
     }
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
 
-    public List<Commentaire> getCommentaires() {
-        return commentaires;
+    public List<String> getNameImage() {
+        return nameImage;
     }
 
-    public void setCommentaires(List<Commentaire> commentaires) {
-        this.commentaires = commentaires;
+    public void setNameImage(List<String> nameImage) {
+        this.nameImage = nameImage;
     }
 
-    public List<Horaire> getHoraires() {
-        return horaire;
+    public List<Categorie> getCategories() {
+        return categories;
     }
 
-    public void setHoraires(List<Horaire> horaires) {
-        this.horaire = horaires;
+    public void setCategories(List<Categorie> categories) {
+        this.categories = categories;
     }
 
     @Override
@@ -113,11 +109,11 @@ public class ParcJardin {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", type='" + type + '\'' +
-                ", L=" + l +
-                ", G=" + g +
+                ", l='" + l + '\'' +
+                ", g='" + g + '\'' +
                 ", adresse='" + adresse + '\'' +
-                ", commentaires=" + commentaires +
-                ", horaires=" + horaire +
+                ", nameImage=" + nameImage +
+                ", categories=" + categories +
                 '}';
     }
 }

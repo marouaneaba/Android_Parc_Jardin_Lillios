@@ -54,7 +54,7 @@ public class PlacesDisplayTask extends AsyncTask<Object, Integer, GoogleMap > {
 
         for(int i=0;i<ParcJardins.size();i++){
             MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.position(new LatLng(ParcJardins.get(i).getL(),ParcJardins.get(i).getG()));
+            markerOptions.position(new LatLng(Double.parseDouble(ParcJardins.get(i).getL()),Double.parseDouble(ParcJardins.get(i).getG())));
             map.addMarker(markerOptions);
         }
         /*

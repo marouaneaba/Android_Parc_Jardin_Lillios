@@ -9,15 +9,15 @@ import java.util.List;
 public class Categorie {
 
     private  Long id;
-    private List<ParcJardin> parcJardinn;
     private String nomcategorie;
 
 
-    public Categorie(List<ParcJardin> ParcJardinn,String Nomcategorie){
-        this.parcJardinn = ParcJardinn;
-        this.nomcategorie = Nomcategorie;
-    }
 
+    public Categorie(){}
+
+    public Categorie(String nomcategorie) {
+        this.nomcategorie = nomcategorie;
+    }
 
     public Long getId() {
         return id;
@@ -32,23 +32,14 @@ public class Categorie {
     }
 
     public void setNomcategorie(String nomcategorie) {
-        nomcategorie = nomcategorie;
-    }
-
-    public List<ParcJardin> getParcJardinn() {
-        return parcJardinn;
-    }
-
-    public void setParcJardinn(List<ParcJardin> parcJardinn) {
-        parcJardinn = parcJardinn;
+        this.nomcategorie = nomcategorie;
     }
 
     @Override
     public String toString() {
         return "Categorie{" +
                 "id=" + id +
-                ", ParcJardinn=" + parcJardinn +
-                ", Nomcategorie='" + nomcategorie + '\'' +
+                ", nomcategorie='" + nomcategorie + '\'' +
                 '}';
     }
 }

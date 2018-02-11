@@ -11,30 +11,17 @@ public class Commentaire {
     private int nbrEtoile;
     private String commentaire;
     private boolean confirmer;
+    private ParcJardin parcJardinn;
 
 
+    public Commentaire(){}
 
-    public Commentaire(String sName,int sNumeEtoile,String sCommentaire,boolean sConfirmer){
-        this.name = sName;
-        this.nbrEtoile = sNumeEtoile;
-        this.commentaire = sCommentaire;
-        this.confirmer = sConfirmer;
-    }
-
-    public int getNbrEtoile() {
-        return nbrEtoile;
-    }
-
-    public void setNbrEtoile(int nbrEtoile) {
+    public Commentaire(String name, int nbrEtoile, String commentaire, boolean confirmer, ParcJardin parcJardinn) {
+        this.name = name;
         this.nbrEtoile = nbrEtoile;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        name = name;
+        this.commentaire = commentaire;
+        this.confirmer = confirmer;
+        this.parcJardinn = parcJardinn;
     }
 
     public Long getId() {
@@ -43,6 +30,22 @@ public class Commentaire {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getNbrEtoile() {
+        return nbrEtoile;
+    }
+
+    public void setNbrEtoile(int nbrEtoile) {
+        this.nbrEtoile = nbrEtoile;
     }
 
     public String getCommentaire() {
@@ -61,12 +64,23 @@ public class Commentaire {
         this.confirmer = confirmer;
     }
 
+    public ParcJardin getParcJardinn() {
+        return parcJardinn;
+    }
+
+    public void setParcJardinn(ParcJardin parcJardinn) {
+        this.parcJardinn = parcJardinn;
+    }
+
     @Override
     public String toString() {
         return "Commentaire{" +
                 "id=" + id +
+                ", Name='" + name + '\'' +
+                ", nbrEtoile=" + nbrEtoile +
                 ", commentaire='" + commentaire + '\'' +
-                ", confirmer=" + confirmer +", Name="+name+" , nbrEtoile="+nbrEtoile+
+                ", confirmer=" + confirmer +
+                ", parcJardinn=" + parcJardinn +
                 '}';
     }
 }

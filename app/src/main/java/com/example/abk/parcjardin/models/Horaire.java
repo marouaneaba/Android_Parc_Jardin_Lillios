@@ -10,12 +10,16 @@ public class Horaire {
     private String ouverture;
     private String fermuture;
     private String journee;
+    private ParcJardin parcJardin;
 
 
-    public Horaire(String ouverture,String fermuture,String journee){
+    public Horaire(){}
+
+    public Horaire(String ouverture, String fermuture, String journee, ParcJardin parcJardin) {
         this.ouverture = ouverture;
         this.fermuture = fermuture;
         this.journee = journee;
+        this.parcJardin = parcJardin;
     }
 
     public Long getId() {
@@ -26,12 +30,12 @@ public class Horaire {
         this.id = id;
     }
 
-    public String getFermuture() {
-        return fermuture;
+    public String getOuverture() {
+        return ouverture;
     }
 
-    public void setFermuture(String fermuture) {
-        this.fermuture = fermuture;
+    public void setOuverture(String ouverture) {
+        this.ouverture = ouverture;
     }
 
     public String getJournee() {
@@ -42,12 +46,20 @@ public class Horaire {
         this.journee = journee;
     }
 
-    public String getOuverture() {
-        return ouverture;
+    public ParcJardin getParcJardin() {
+        return parcJardin;
     }
 
-    public void setOuverture(String ouverture) {
-        this.ouverture = ouverture;
+    public void setParcJardin(ParcJardin parcJardin) {
+        this.parcJardin = parcJardin;
+    }
+
+    public String getFermuture() {
+        return fermuture;
+    }
+
+    public void setFermuture(String fermuture) {
+        this.fermuture = fermuture;
     }
 
     @Override
@@ -57,6 +69,7 @@ public class Horaire {
                 ", ouverture='" + ouverture + '\'' +
                 ", fermuture='" + fermuture + '\'' +
                 ", journee='" + journee + '\'' +
+                ", parcJardin=" + parcJardin +
                 '}';
     }
 }

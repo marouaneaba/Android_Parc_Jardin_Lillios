@@ -38,14 +38,16 @@ public class DetailParcJardin extends AppCompatActivity {
 
     private TextView text1,plus;
     private TextView text2;
-    private Double latitude;
-    private Double longitude;
+    private double latitude;
+    private double longitude;
+    private String NameParcJardinSelected;
     private TextView Name,Horaire,Addresse,Description;
     private String URL ="https://www.google.com/maps/search/?api=1";
     private List<ParcJardin> parcJardinsP;
     TextView description = null;
     FragmentManager fm ;
     private String descriptionaff;
+    private Long idParcJardinLillios;
 
 
     public Service URLretrofit(){
@@ -72,32 +74,25 @@ public class DetailParcJardin extends AppCompatActivity {
         Description = (TextView)findViewById(R.id.Description);
 
         Intent intent = getIntent();
-        latitude = Double.parseDouble(intent.getStringExtra("latitude"));
-        longitude = Double.parseDouble(intent.getStringExtra("longitude"));
-
-
-        //getParcJardinByLatitudeLongitude(latitude,longitude);
-        Actualiser(latitude,longitude);
-        //getCommentaireJardinParc("NameParcJardin");
-        //getImage();
-        //getCategorie();
+        NameParcJardinSelected = intent.getStringExtra("nameJardinParcLillios");
+        Actualiser(NameParcJardinSelected);
 
     }
         // afficher le nom/addresse/Horaire d'un parc/jardin , et récupper par des web service les catégorie associé a se parc/jardin
-    public void Actualiser(double latitude,double longitude){
+    public void Actualiser(String NameParcJardinLillios){
         Service service = URLretrofit();
-        service.getParcJardinLatitudeLongitude(latitude,longitude, new Callback<ParcJardin>() {
+        service.GetParcJardinByName(NameParcJardinLillios, new Callback<ParcJardin>() {
             @Override
             public void success(ParcJardin parcJardin, Response response) {
                 Name.setText(parcJardin.getName());
-                //Horaire.setText(parcJardin.getHoraires().toString());
                 Addresse.setText(parcJardin.getAdresse());
                 Description.setText(parcJardin.getDescription());
                 descriptionaff = parcJardin.getDescription();
-                //setCategorie("parc");
-                setCategorie(parcJardin.getName());
-                setImageParcJardin("parc");
-                getCommentaireJardinParc("parc");
+                idParcJardinLillios = parcJardin.getId();
+                imgCategorie(parcJardin);
+                setImageParcJardin(parcJardin.getName());
+                getCommentaireJardinParc(parcJardin.getId());
+
             }
 
             @Override
@@ -107,74 +102,48 @@ public class DetailParcJardin extends AppCompatActivity {
         });
     }
 
-    //apré la récupération des catégorie d'un parc/jardin , appel la méthode la production dynamique des image à afficher à partir les catégorie récupérer
-    public void setCategorie(String nameParcJardin){
 
-        Service service = URLretrofit();
-        service.getCategorieByParcJardinn(nameParcJardin, new Callback<List<Categorie>>() {
-            @Override
-            public void success(List<Categorie> categories, Response response) {
-                imgCategorie(categories);
-            }
 
-            @Override
-            public void failure(RetrofitError error) {
-                Toast.makeText(getApplication(),"Error get Catégorie d'un parc/Jardin !!",Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
-
-    public void imgCategorie(List<Categorie> categories){
-        /*List<String> categories = new ArrayList<String>();
-        categories.add("sport");
-        categories.add("etude");
-        categories.add("restauration");*/
-
+    public void imgCategorie(ParcJardin parcJardin){
 
         LinearLayout ll2 = (LinearLayout) findViewById(R.id.imgCategories);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(10, 20, 10, 5);
-        //layoutParams.weight=80;
         layoutParams.width = 80;
         layoutParams.height=80;
-        //ll.setOrientation(LinearLayout.VERTICAL);
+
         ll2.removeAllViews(); //Ligne problèmatique
         ll2.removeAllViewsInLayout();
-        Toast.makeText(getApplication(),"size categorie : "+categories.size(),Toast.LENGTH_SHORT).show();
-        for(int i=0;i<categories.size();i++){
+
+
+        for(int i=0;i<parcJardin.getCategories().size();i++){
             ImageView img = new ImageView(DetailParcJardin.this);
 
-            if(categories.get(i).getNomcategorie().toUpperCase().equals("SPORT")){
+            if(parcJardin.getCategories().get(i).getNomcategorie().toUpperCase().equals("SPORT")){
                 img.setImageDrawable(getResources().getDrawable(R.drawable.footing));
             }
-            if(categories.get(i).getNomcategorie().toUpperCase().equals("ETUDE")){
+            if(parcJardin.getCategories().get(i).getNomcategorie().toUpperCase().equals("ETUDE")){
                 img.setImageDrawable(getResources().getDrawable(R.drawable.etude2));
             }
-            if(categories.get(i).getNomcategorie().toUpperCase().equals("RESTAURATION")){
+            if(parcJardin.getCategories().get(i).getNomcategorie().toUpperCase().equals("RESTAURATION")){
                 img.setImageDrawable(getResources().getDrawable(R.drawable.restauration));
             }
-            if(categories.get(i).getNomcategorie().toUpperCase().equals("PARC")){
+            if(parcJardin.getCategories().get(i).getNomcategorie().toUpperCase().equals("PARC")){
                 img.setImageDrawable(getResources().getDrawable(R.drawable.parc));
             }
-            if(categories.get(i).getNomcategorie().toUpperCase().equals("JARDIN")){
+            if(parcJardin.getCategories().get(i).getNomcategorie().toUpperCase().equals("JARDIN")){
                 img.setImageDrawable(getResources().getDrawable(R.drawable.jardin));
             }
-            if(categories.get(i).getNomcategorie().toUpperCase().equals("PROMONER")){
+            if(parcJardin.getCategories().get(i).getNomcategorie().toUpperCase().equals("PROMONER")){
                 img.setImageDrawable(getResources().getDrawable(R.drawable.promoner));
             }
-            if(categories.get(i).getNomcategorie().toUpperCase().equals("ECOUTER")){
+            if(parcJardin.getCategories().get(i).getNomcategorie().toUpperCase().equals("ECOUTER")){
                 img.setImageDrawable(getResources().getDrawable(R.drawable.music));
             }
-            if(categories.get(i).getNomcategorie().toUpperCase().equals("OBSERVER")){
+            if(parcJardin.getCategories().get(i).getNomcategorie().toUpperCase().equals("OBSERVER")){
                 img.setImageDrawable(getResources().getDrawable(R.drawable.observer));
             }
 
-            /*img.setMaxWidth(1);
-            img.layout(1,1,1,1);
-
-            img.setLayoutParams(new FrameLayout.LayoutParams(100,100));*/
-            //img.setScaleType(ImageView.ScaleType.FIT_START);
             ll2.addView(img,layoutParams);
         }
     }
@@ -210,29 +179,7 @@ public class DetailParcJardin extends AppCompatActivity {
         //for(int i=0;i<imagesURLName.size();i++){
         for(int i=0;i<4;i++){
             ImageView img = new ImageView(DetailParcJardin.this);
-            /*Bitmap thumbImg;
-            Toast.makeText(getApplication(),"Arrivé :4: ...  !!!",Toast.LENGTH_SHORT).show();
-            try {
-                //URL url = new URL(Service.ENDPOINT+"/image/"+imagesURLName.get(i));
-                Toast.makeText(getApplication(),"Arrivé :5: ...  !!!",Toast.LENGTH_SHORT).show();
-                URL url = new URL("https://www.salford.ac.uk/__data/assets/image/0008/890072/varieties/lightbox.jpg");
-                Toast.makeText(getApplication(),"Arrivé :6: ...  !!!",Toast.LENGTH_SHORT).show();
-                URLConnection thumbConn = url.openConnection();
-                Toast.makeText(getApplication(),"Arrivé :7: ...  !!!",Toast.LENGTH_SHORT).show();
-                //thumbConn.connect();
-                Toast.makeText(getApplication(),"Arrivé :8: ...  !!!",Toast.LENGTH_SHORT).show();
-                InputStream thumbIn = thumbConn.getInputStream();
-                Toast.makeText(getApplication(),"Arrivé :9: ...  !!!",Toast.LENGTH_SHORT).show();
-                BufferedInputStream thumbBuff = new BufferedInputStream(thumbIn);
-                thumbImg = BitmapFactory.decodeStream(thumbBuff);
-                thumbBuff.close();
-                thumbIn.close();
-
-                //Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                img.setImageBitmap(thumbImg);
-            }catch(Exception r){
-
-            }*/
+            
 
             //Picasso.with(getBaseContext()).load("https://www.salford.ac.uk/__data/assets/image/0008/890072/varieties/lightbox.jpg").into(img);
             Picasso.with(getBaseContext()).load("https://fathomless-woodland-61246.herokuapp.com/images/imageApp/image"+(i+1)+".jpg").into(img);
@@ -263,10 +210,10 @@ public class DetailParcJardin extends AppCompatActivity {
 
     }
 
-    public void getCommentaireJardinParc(String NameParcJardin){
+    public void getCommentaireJardinParc(Long IdParcJardin){
 
         Service service = URLretrofit();
-        service.getCommenatiresByParcJardin(NameParcJardin, new Callback<List<Commentaire>>() {
+        service.getCommenatiresByParcJardin(IdParcJardin, new Callback<List<Commentaire>>() {
             @Override
             public void success(List<Commentaire> commentaires, Response response) {
 
@@ -456,6 +403,7 @@ public class DetailParcJardin extends AppCompatActivity {
 
     public boolean AjoutCommentaire(View v){
         CommentaireFragment dfragmenet = new CommentaireFragment();
+        dfragmenet.setIdParcJardinLillios(idParcJardinLillios);
         dfragmenet.show(fm,"Commentaire : ");
         return true;
     }

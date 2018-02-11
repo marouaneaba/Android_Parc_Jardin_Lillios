@@ -56,8 +56,11 @@ public class GooglePlacesReadTask extends AsyncTask<Object, Integer, GoogleMap> 
         if(parcJardinns != null)
         for (int i = 0; i < parcJardinns.size(); i++) {
             MarkerOptions markerOptions = new MarkerOptions();
-            LatLng mLatLng = new LatLng(parcJardinns.get(i).getL(),parcJardinns.get(i).getG());
+            LatLng mLatLng = new LatLng(Double.parseDouble(parcJardinns.get(i).getL()),Double.parseDouble(parcJardinns.get(i).getG()));
+            //System.out.println(" **************** "+parcJardinns);
+
             markerOptions.position(mLatLng);
+            markerOptions.title(parcJardinns.get(i).getName());
             if(parcJardinns.get(i).getType().toUpperCase().equals("PARC")){
                 markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.parc_map_resize4));
             }else if(parcJardinns.get(i).getType().toUpperCase().equals("JARDIN")){

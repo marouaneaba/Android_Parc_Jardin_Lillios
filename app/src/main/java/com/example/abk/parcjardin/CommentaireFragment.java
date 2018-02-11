@@ -43,6 +43,7 @@ public class CommentaireFragment extends DialogFragment {
 
     private String nameS,commentaireS;
     private int nbrEtoileI;
+    private Long idparcjardinlillios;
 
     public Service URLretrofit(){
         Service service = new RestAdapter.Builder()
@@ -79,20 +80,12 @@ public class CommentaireFragment extends DialogFragment {
     }
 
 
-
+    public void setIdParcJardinLillios(Long idparcjardinlillios){
+        this.idparcjardinlillios = idparcjardinlillios;
+    }
 
     public void EnvoyerPost(){
 
-        /*Gson gson = new GsonBuilder().setLenient().create();
-
-        OkHttpClient client = new OkHttpClient();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Service.ENDPOINT)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-        Service service = retrofit.create(Service.class);*/
         Service service = URLretrofit();
 
 
@@ -100,7 +93,7 @@ public class CommentaireFragment extends DialogFragment {
         commentaireS = Commentaire.getText().toString().trim();
         nbrEtoileI = etoile.getNumStars();
 
-        service.PostCommentaire(nameS,nbrEtoileI,commentaireS, new Callback<Commentaire>() {
+        service.PostCommentaire(idparcjardinlillios,nameS,nbrEtoileI,commentaireS, new Callback<Commentaire>() {
             @Override
             public void success(Commentaire c, Response response) {
                 Toast.makeText(getContext(),"Post Commentaire : récus"+c,Toast.LENGTH_SHORT).show();
@@ -111,13 +104,5 @@ public class CommentaireFragment extends DialogFragment {
                 Toast.makeText(getContext(),"Error Send Cmmenataire !! : "+error,Toast.LENGTH_SHORT).show();
             }
         });
-
-        //Toast.makeText(getContext(),"mesage error :"+message,Toast.LENGTH_SHORT).show();
-        /*if(responce.equals("ok")){
-            Toast.makeText(getContext(),"Votre Commentaire il est bien enregitré ",Toast.LENGTH_SHORT).show();
-            //getActivity().finish();
-        }else if(responce.equals("ko")){
-            Toast.makeText(getContext()," Error d'envoyer votre Commentaire !! ",Toast.LENGTH_SHORT).show();
-        }*/
     }
 }
