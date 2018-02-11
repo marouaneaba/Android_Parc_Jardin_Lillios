@@ -179,7 +179,7 @@ public class DetailParcJardin extends AppCompatActivity {
         //for(int i=0;i<imagesURLName.size();i++){
         for(int i=0;i<4;i++){
             ImageView img = new ImageView(DetailParcJardin.this);
-            
+
 
             //Picasso.with(getBaseContext()).load("https://www.salford.ac.uk/__data/assets/image/0008/890072/varieties/lightbox.jpg").into(img);
             Picasso.with(getBaseContext()).load("https://fathomless-woodland-61246.herokuapp.com/images/imageApp/image"+(i+1)+".jpg").into(img);

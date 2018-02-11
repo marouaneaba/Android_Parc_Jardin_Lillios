@@ -19,11 +19,9 @@ import retrofit.http.Path;
 
 public interface Service {
 
-<<<<<<< HEAD
-    public static final String ENDPOINT = "https://obscure-reef-42267.herokuapp.com";//"http://env-2321100.hidora.com";//"https://api.github.com";
-=======
-    public static final String ENDPOINT = "https://infinite-forest-42196.herokuapp.com";//http://env-2321100.hidora.com";//"https://api.github.com";
->>>>>>> 5946f64aa151ff23beb5d158df94a1c9b03e5636
+
+    public static final String ENDPOINT = "https://obscure-reef-42267.herokuapp.com";
+
 
 
     @GET("/api/Categorie/test")

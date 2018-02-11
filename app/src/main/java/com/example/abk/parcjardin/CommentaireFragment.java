@@ -70,7 +70,13 @@ public class CommentaireFragment extends DialogFragment {
         Envoyer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EnvoyerPost();
+                if(!Name.getText().toString().trim().equals("") && !Commentaire.getText().toString().trim().equals("") ){
+                    EnvoyerPost();
+                    Name.setText("");
+                    Commentaire.setText("");
+                }
+                else
+                    Toast.makeText(getContext()," Veuillez remplir les cases !!",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -97,6 +103,8 @@ public class CommentaireFragment extends DialogFragment {
             @Override
             public void success(Commentaire c, Response response) {
                 Toast.makeText(getContext(),"Post Commentaire : récus"+c,Toast.LENGTH_SHORT).show();
+
+                //getActivity().finish();
             }
 
             @Override
