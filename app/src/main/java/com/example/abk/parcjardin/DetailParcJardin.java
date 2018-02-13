@@ -30,15 +30,14 @@ import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-/**
- * Created by abk on 10/01/2018.
- */
+
 
 public class DetailParcJardin extends AppCompatActivity {
 
 
     private TextView text1,plus;
     private TextView text2;
+    private RatingBar ratingBarEtoile;
     private double latitude;
     private double longitude;
     private String NameParcJardinSelected;
@@ -68,6 +67,7 @@ public class DetailParcJardin extends AppCompatActivity {
 
 
         plus = (TextView)findViewById(R.id.plus);
+        ratingBarEtoile = (RatingBar) findViewById(R.id.ratingBar);
         String htmlString = "<u>Plus</u>";
         plus.setText(Html.fromHtml(htmlString));
         Name = (TextView)findViewById(R.id.Name);
@@ -90,9 +90,9 @@ public class DetailParcJardin extends AppCompatActivity {
                 Description.setText(parcJardin.getDescription());
                 descriptionaff = parcJardin.getDescription();
                 idParcJardinLillios = parcJardin.getId();
+
                 imgCategorie(parcJardin);
                 getHoraire(parcJardin.getId());
-                //setImageParcJardin(parcJardin.getName());
                 getImage(parcJardin.getName());
                 getCommentaireJardinParc(parcJardin.getId());
 
@@ -122,20 +122,18 @@ public class DetailParcJardin extends AppCompatActivity {
                 String tmp="";
                 for(int i=0;i<horaires.size();i++){
                     if ( horaires.get(i).getJournee() != null)
-                        tmp += horaires.get(i).getJournee()+" , ";
+                        tmp += horaires.get(i).getJournee()+" . ";
                     if ( horaires.get(i).getOuverture() != null )
-                        tmp += horaires.get(i).getOuverture()+" , ";
+                        tmp += horaires.get(i).getOuverture()+" . ";
                     if ( horaires.get(i).getFermuture() != null )
                         tmp += horaires.get(i).getFermuture();
                     tmp+="\n";
-                    //tmp += horaires.get(i).getJournee()+" , "+horaires.get(i).getOuverture()+" , "+horaires.get(i).getFermuture()+"\n";
 
                 }
 
                 TextView text = new TextView(DetailParcJardin.this);
                 text.setText(tmp);
                 ll2.addView(text,layoutParams);
-                System.out.println("7777777777777777777777777777 : "+tmp);
             }
 
             @Override
@@ -161,58 +159,47 @@ public class DetailParcJardin extends AppCompatActivity {
             ImageView img = new ImageView(DetailParcJardin.this);
 
             if(parcJardin.getCategories().get(i).getNomcategorie().toUpperCase().equals("SPORT")){
-                img.setImageDrawable(getResources().getDrawable(R.drawable.footing));
+                img.setImageDrawable(getResources().getDrawable(R.drawable.sport_2_tra));
+                ll2.addView(img,layoutParams);
             }
             if(parcJardin.getCategories().get(i).getNomcategorie().toUpperCase().equals("ETUDE")){
                 img.setImageDrawable(getResources().getDrawable(R.drawable.etude2));
+                ll2.addView(img,layoutParams);
             }
             if(parcJardin.getCategories().get(i).getNomcategorie().toUpperCase().equals("RESTAURATION")){
                 img.setImageDrawable(getResources().getDrawable(R.drawable.restauration));
+                ll2.addView(img,layoutParams);
             }
             if(parcJardin.getCategories().get(i).getNomcategorie().toUpperCase().equals("PARC")){
                 img.setImageDrawable(getResources().getDrawable(R.drawable.parc));
+                ll2.addView(img,layoutParams);
             }
             if(parcJardin.getCategories().get(i).getNomcategorie().toUpperCase().equals("JARDIN")){
                 img.setImageDrawable(getResources().getDrawable(R.drawable.jardin));
+                ll2.addView(img,layoutParams);
             }
             if(parcJardin.getCategories().get(i).getNomcategorie().toUpperCase().equals("PROMONER")){
                 img.setImageDrawable(getResources().getDrawable(R.drawable.promoner));
+                ll2.addView(img,layoutParams);
             }
             if(parcJardin.getCategories().get(i).getNomcategorie().toUpperCase().equals("ECOUTER")){
                 img.setImageDrawable(getResources().getDrawable(R.drawable.music));
+                ll2.addView(img,layoutParams);
             }
             if(parcJardin.getCategories().get(i).getNomcategorie().toUpperCase().equals("OBSERVER")){
                 img.setImageDrawable(getResources().getDrawable(R.drawable.observer));
+                ll2.addView(img,layoutParams);
             }
 
-            ll2.addView(img,layoutParams);
+            //ll2.addView(img,layoutParams);
         }
     }
 
-    public void setImageParcJardin(String nameParcJardin){
-
-        /*Service service = URLretrofit();
-        service.getImagesParcJardin(nameParcJardin, new Callback<List<String>>() {
-            @Override
-            public void success(List<String> imagesURLName, Response response) {
-                getImage(imagesURLName);
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                getImage(new ArrayList<String>());
-                Toast.makeText(getApplication(),"Error get List Image Parc/Jardin !!",Toast.LENGTH_SHORT).show();
-            }
-        });*/
-
-    }
 
     public void getImage(String ParcJardinName){
 
         LinearLayout ll2 = (LinearLayout) findViewById(R.id.imgLinear);
-        //LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        //layoutParams.setMargins(10, 20, 10, 50);
-        //ll.setOrientation(LinearLayout.VERTICAL);
+
         ll2.removeAllViews(); //Ligne problèmatique
         ll2.removeAllViewsInLayout();
 
@@ -224,10 +211,12 @@ public class DetailParcJardin extends AppCompatActivity {
 
 
             //Picasso.with(getBaseContext()).load("https://www.salford.ac.uk/__data/assets/image/0008/890072/varieties/lightbox.jpg").into(img);
-            String Url = "https://obscure-reef-42267.herokuapp.com/images/"+ParcJardinName+"/"+ParcJardinName+(i)+".jpg";
+            String nameParcRegex = ParcJardinName;
+            nameParcRegex = nameParcRegex.replaceAll(" ","_");
+            String Url = "https://obscure-reef-42267.herokuapp.com/images/"+nameParcRegex+"/"+nameParcRegex+(i)+".jpg";
 
-
-            Picasso.with(getBaseContext()).load("https://obscure-reef-42267.herokuapp.com/images/"+ParcJardinName+"/"+ParcJardinName+(i)+".jpg").into(img);
+            System.out.println("************************* Picasso : "+"https://obscure-reef-42267.herokuapp.com/images/"+nameParcRegex+"/"+nameParcRegex+(i)+".jpg");
+            Picasso.with(getBaseContext()).load("https://obscure-reef-42267.herokuapp.com/images/"+nameParcRegex+"/"+nameParcRegex+(i)+".jpg").into(img);
             DetailParcJardin.Urler =ParcJardinName;
             //img.setImageDrawable(getResources().getDrawable(R.drawable.man2));
             img.setLayoutParams(new FrameLayout.LayoutParams(500,350));
@@ -246,10 +235,7 @@ public class DetailParcJardin extends AppCompatActivity {
                 }
             });
 
-            //img.setPadding(2,2,2,2);
-            //img.setMinimumWidth(50);
-            //img.setMaxWidth(50);
-            //img.setScaleType(ImageView.ScaleType.FIT_START);
+
             ll2.addView(img);
             ImageView imgLine = new ImageView(DetailParcJardin.this);
             imgLine.setImageDrawable(getResources().getDrawable(R.drawable.line2h));
@@ -268,13 +254,12 @@ public class DetailParcJardin extends AppCompatActivity {
             @Override
             public void success(List<Commentaire> commentaires, Response response) {
 
-                Toast.makeText(getApplication(),"OUI COMMENTAIRE ARRIVE !!",Toast.LENGTH_SHORT).show();
 
                 description = new TextView( DetailParcJardin.this);
                 LinearLayout ll2 = (LinearLayout) findViewById(R.id.liner);
                 ll2.removeAllViews(); //Ligne problèmatique
                 ll2.removeAllViewsInLayout();
-
+                int numberStar = 0;
                 for(int i=0;i<commentaires.size();i++){
 
 
@@ -306,6 +291,7 @@ public class DetailParcJardin extends AppCompatActivity {
                     rating.setScaleX(0.5f);
                     rating.setScaleY(0.5f);
                     rating.setRating(commentaires.get(i).getNbrEtoile());//.setNumStars(2);
+                    numberStar += commentaires.get(i).getNbrEtoile();
                     rating.setEnabled(false);
                     LinearLayout.LayoutParams layoutParamsRating = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     layoutParamsRating.setMarginStart(85);
@@ -314,11 +300,7 @@ public class DetailParcJardin extends AppCompatActivity {
                     d2.setText(commentaires.get(i).getCommentaire());
 
                     d2.setPadding(40,0,1,0);
-                    //LinearLayout.LayoutParams layoutParamsTextCOmmentaire = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    //layoutParamsTextCOmmentaire.setMargins(0,0,0,0);
-                    //l,t,r,b
 
-                    //linear.addView(d2,layoutParamsTextCOmmentaire);
                     linear.addView(d2);
                     ImageView imgLine = new ImageView(DetailParcJardin.this);
                     imgLine.setImageDrawable(getResources().getDrawable(R.drawable.line_2_min));
@@ -327,8 +309,13 @@ public class DetailParcJardin extends AppCompatActivity {
 
                     linearH.addView(linear);
                     ll2.addView(linearH);
-                    Toast.makeText(getApplication(),"comemntaire :11 "+commentaires.get(i),Toast.LENGTH_SHORT).show();
                 }
+                try{
+                    ratingBarEtoile.setRating(numberStar/commentaires.size());
+                }catch( ArithmeticException e){
+                    ratingBarEtoile.setRating(0);
+                }
+
             }
 
             @Override
@@ -345,11 +332,7 @@ public class DetailParcJardin extends AppCompatActivity {
         return true;
     }
 
-    /*public List<ParcJardin> getParcJardinByLatitudeLongitude(double latitude,double longitude){
 
-        Service service = URLretrofit();
-         return service.getParcJardinLatitudeLongitude(latitude,longitude);
-    }*/
 
 
     public void Plus(View v){

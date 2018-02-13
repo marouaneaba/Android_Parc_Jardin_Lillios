@@ -36,7 +36,7 @@ public class PlacesDisplayTask extends AsyncTask<Object, Integer, GoogleMap > {
     protected GoogleMap doInBackground(Object... inputObj) {
 
         List<HashMap<String, String>> googlePlacesList = null;
-        Places placeJsonParser = new Places();
+
 
         try {
             googleMap = (GoogleMap) inputObj[0];
@@ -57,34 +57,6 @@ public class PlacesDisplayTask extends AsyncTask<Object, Integer, GoogleMap > {
             markerOptions.position(new LatLng(Double.parseDouble(ParcJardins.get(i).getL()),Double.parseDouble(ParcJardins.get(i).getG())));
             map.addMarker(markerOptions);
         }
-        /*
-        googleMap.clear();
-        List<LatLng> LatLngs = new ArrayList<>();
-        LatLngs.add(new LatLng(50.611881,3.141374) );
-        LatLngs.add(new LatLng(50.613007,3.138083) );
-        LatLngs.add(new LatLng(50.612278,3.140411) );
-        LatLngs.add(new LatLng(50.612060,3.140164) );
-        LatLngs.add(new LatLng(50.612156,3.140057) );
-        LatLngs.add(new LatLng(50.612054,3.139113) );
-        LatLngs.add(new LatLng(50.612156,3.139263) );
 
-        for (int i = 0; i < LatLngs.size(); i++) {
-            MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.position(LatLngs.get(i));
-            //markerOptions.title(placeName + " : " + vicinity);
-            googleMap.addMarker(markerOptions);
-        }*/
-        /*for (int i = 0; i < list.size(); i++) {
-            MarkerOptions markerOptions = new MarkerOptions();
-            HashMap<String, String> googlePlace = list.get(i);
-            double lat = Double.parseDouble(googlePlace.get("lat"));
-            double lng = Double.parseDouble(googlePlace.get("lng"));
-            String placeName = googlePlace.get("place_name");
-            String vicinity = googlePlace.get("vicinity");
-            LatLng latLng = new LatLng(lat, lng);
-            markerOptions.position(latLng);
-            markerOptions.title(placeName + " : " + vicinity);
-            googleMap.addMarker(markerOptions);
-        }*/
     }
 }

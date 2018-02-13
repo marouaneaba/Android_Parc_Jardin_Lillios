@@ -30,8 +30,8 @@ public class DFragment extends DialogFragment  {
 
         View view = inflater.inflate(R.layout.dialog_fragment,null);
         mImageView = (ImageView)view.findViewById(R.id.imageF);
-
-        String Url = "https://obscure-reef-42267.herokuapp.com/images/"+nameParcJardin+"/"+nameParcJardin+(message)+".jpg";
+        String nameParcJardinRegex = nameParcJardin.replaceAll(" ","_");
+        String Url = "https://obscure-reef-42267.herokuapp.com/images/"+nameParcJardinRegex+"/"+nameParcJardinRegex+(message)+".jpg";
 
         Picasso.with(getContext()).load(Url).into(mImageView);
         setCancelable(true);
@@ -45,6 +45,5 @@ public class DFragment extends DialogFragment  {
 
     public void setNameParcJardin(String nameParcJardin){
         this.nameParcJardin = nameParcJardin;
-        System.out.println("****************** name : "+this.nameParcJardin);
     }
 }

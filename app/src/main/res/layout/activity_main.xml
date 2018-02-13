@@ -115,13 +115,7 @@
                     android:onClick="observer"/>
 
 
-                <Button
-                    android:id="@+id/button8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.43"
-                    android:text="test"
-                    android:onClick="test"/>
+
 
 
 

@@ -24,8 +24,7 @@ public interface Service {
 
 
 
-    @GET("/api/Categorie/test")
-    void getCategorie(Callback<List<Categorie>> callback);
+
 
     @GET("/api/PJ")
     void getParcJardinn(Callback<List<ParcJardin>> callback);
@@ -39,22 +38,14 @@ public interface Service {
     @GET("/api/PJByservice/{service}")
     void getParcJardinnService(@Path("service") String service,Callback<List<ParcJardin>> callback);
 
-    @GET("/api/PJBylocalisation/{Latitude}/{Longitude}/test")
-    void getParcJardinLatitudeLongitude(@Path("Latitude") double Latitude,@Path("Longitude")double Longitude,Callback<ParcJardin> callback);
 
-	@GET("/api/categorieByPJ/{parcJardinn}/test")
-	void getCategorieByParcJardinn(@Path("parcJardinn") String ParcJardin,Callback<List<Categorie>> callback);
 
     @GET("/api/CommentaireByPJ/{ParcJardin}")
     void getCommenatiresByParcJardin(@Path("ParcJardin") Long IdParcJardin,Callback<List<Commentaire>> callback);
 
     @GET("/api/horaire/{idParcJardin}")
     void getHoraireByIdParcJardinLillios(@Path("idParcJardin") Long IdParcJardin,Callback<List<Horaire>> callback);
-/*
-    @POST("/api/Commentaire")
-    @FormUrlEncoded
-    void postCommentaire(@Field("name")String Name, @Field("nbrEtoile")int nbrEtoile, @Field("commentaire") String commentaire,@Field("id") int id,Callback<String> callback);
-*/
+
     @GET("/api/PostCommentaire/{idPJ}/{name}/{nbrEtoile}/{commentaire}")
     void PostCommentaire(@Path("idPJ")Long idPJ,@Path("name")String Name, @Path("nbrEtoile")int nbrEtoile, @Path("commentaire") String commentaire,Callback<Commentaire> callback);
 
@@ -67,23 +58,6 @@ public interface Service {
 
     @GET("/api/imagesParcJardin/{ParcJardin}/test")
     void getImagesParcJardin(@Path("ParcJardin") String ParcJardin,Callback<List<String>> callback);
-    /*
-    *@GET("/api/para")
-    * List searchRepos(@Query("g") String query) ==> /api/para?q=picasso
-    * */
-    /**/
-    @GET("/api/Commentaire/test")
-    void getCommentaire(Callback<List<Commentaire>> callback);
-
-    @GET("/api/Commentaire/test")
-    void getHoraire(Callback<List<Horaire>> callback);
-
-
-
-    @POST("/api/PJ/test")
-    void  postParcJardinn(@Field("name")String name,@Field("description")String description,
-                            @Field("type")String type,@Field("l")double l,@Field("g")double g,
-                            @Field("addresse")String addresse);
 
 
 

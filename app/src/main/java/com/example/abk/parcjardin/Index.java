@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-/**
- * Created by abk on 19/01/2018.
- */
+
 
 public class Index extends AppCompatActivity {
 

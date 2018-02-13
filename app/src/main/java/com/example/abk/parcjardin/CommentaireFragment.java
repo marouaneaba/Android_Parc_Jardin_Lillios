@@ -96,20 +96,21 @@ public class CommentaireFragment extends DialogFragment {
 
 
         nameS = Name.getText().toString().trim();
-        commentaireS = Commentaire.getText().toString().trim();
+        commentaireS = Commentaire.getText().toString().trim().replaceAll("\n"," ");
+
         nbrEtoileI = etoile.getNumStars();
 
         service.PostCommentaire(idparcjardinlillios,nameS,nbrEtoileI,commentaireS, new Callback<Commentaire>() {
             @Override
             public void success(Commentaire c, Response response) {
-                Toast.makeText(getContext(),"Post Commentaire : récus"+c,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Ton commentaire et bien Envoyer !!",Toast.LENGTH_SHORT).show();
 
-                //getActivity().finish();
+
             }
 
             @Override
             public void failure(RetrofitError error) {
-                Toast.makeText(getContext(),"Error Send Cmmenataire !! : "+error,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Error Envoyer Cmmenataire !! : "+error.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
     }

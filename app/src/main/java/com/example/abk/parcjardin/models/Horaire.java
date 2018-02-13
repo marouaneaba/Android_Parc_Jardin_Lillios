@@ -1,8 +1,6 @@
 package com.example.abk.parcjardin.models;
 
-/**
- * Created by abk on 06/01/2018.
- */
+
 
 public class Horaire {
 

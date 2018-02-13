@@ -2,9 +2,7 @@ package com.example.abk.parcjardin.models;
 
 import java.util.List;
 
-/**
- * Created by abk on 06/01/2018.
- */
+
 
 public class Categorie {
 

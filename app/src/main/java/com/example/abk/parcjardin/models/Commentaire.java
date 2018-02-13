@@ -1,8 +1,6 @@
 package com.example.abk.parcjardin.models;
 
-/**
- * Created by abk on 04/01/2018.
- */
+
 
 public class Commentaire {
 

@@ -97,14 +97,12 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 
 
-        //getParcJardinByService("Tout");
+
         getTousParcJardinLillios();
 
         googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                //getParcJardinByLatitudeLongitude(marker.getPosition().longitude,marker.getPosition().latitude);
-                //Toast.makeText(getApplication(),"marker longitude : "+marker.getTitle(),Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, DetailParcJardin.class);
                 intent.putExtra("nameJardinParcLillios", marker.getTitle());
                 startActivity(intent);
@@ -125,7 +123,6 @@ public class MainActivity extends FragmentActivity implements LocationListener {
                             addPointMap(parcJardins);
                         }else{
                             addPointMap(parcJardins);
-                            Toast.makeText(getApplication(),"Parc Search : "+parcJardins,Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -145,12 +142,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
     }
 
-    public void test(View v){
-        Intent intent = new Intent(MainActivity.this, DetailParcJardin.class);
-        intent.putExtra("latitude", "1.2");
-        intent.putExtra("longitude", "30.6");
-        startActivity(intent);
-    }
+
 
     public void addPointMap(List<ParcJardin> parcJardins){
 
@@ -166,7 +158,6 @@ public class MainActivity extends FragmentActivity implements LocationListener {
         service.getParcJardinn(new Callback<List<ParcJardin>>() {
             @Override
             public void success(List<ParcJardin> parcJardins, Response response) {
-                Toast.makeText(getApplication(),"parcJardin Détail : "+parcJardins,Toast.LENGTH_SHORT).show();
 
                 addPointMap(parcJardins);
             }
@@ -184,8 +175,6 @@ public class MainActivity extends FragmentActivity implements LocationListener {
         service.getParcJardinnService(serviceName, new Callback<List<ParcJardin>>() {
             @Override
             public void success(List<ParcJardin> parcJardins, Response response) {
-                Toast.makeText(getApplication(),"parcJardin Détail : "+parcJardins,Toast.LENGTH_SHORT).show();
-
                 addPointMap(parcJardins);
             }
 
@@ -197,21 +186,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
     }
 
-    public void getParcJardinByLatitudeLongitude(double latitude,double longitude){
 
-        Service service = URLretrofit();
-        service.getParcJardinLatitudeLongitude(latitude,longitude, new Callback<ParcJardin>() {
-
-            @Override
-            public void success(ParcJardin parcJardin, Response response) {
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                Toast.makeText(getApplication(),"Parc Ou Jardin n'existe pas !! ",Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
 
     private boolean isGooglePlayServicesAvailable() {
@@ -224,28 +199,8 @@ public class MainActivity extends FragmentActivity implements LocationListener {
         }
     }
 
-    protected void getCategorie(){
-        Service service = URLretrofit();
-        service.getCategorie(new Callback<List<Categorie>>() {
-            @Override
-            public void success(List<Categorie> Categories, Response response) {
-                Toast.makeText(getApplication(),"Succeus : ",Toast.LENGTH_SHORT).show();
-                afficherCategorie(Categories);
-            }
 
-            @Override
-            public void failure(RetrofitError error) {
-                Toast.makeText(getApplication(),"Failure : "+error,Toast.LENGTH_SHORT).show();
-                System.out.println("***********erreor: "+error);
-            }
-        });
-    }
 
-    public void afficherCategorie(List<Categorie> Categories){
-        for(int i=0;i<Categories.size();i++){
-            Toast.makeText(this,"categorie : "+Categories.get(i),Toast.LENGTH_SHORT).show();
-        }
-    }
 
     public void getAllParcJardin(){
         Service service = URLretrofit();
@@ -296,59 +251,14 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 
     public void setParcJardin(List<ParcJardin> parcJardinns){
-        //Toast.makeText(getApplication(),"size leee :  "+parcJardinns,Toast.LENGTH_SHORT).show();
         for(int i=0;i<parcJardinns.size();i++){
             this.parcJardinP.add(parcJardinns.get(i));
-            Toast.makeText(getApplication(),"size leee :  "+parcJardinns.size(),Toast.LENGTH_SHORT).show();
         }
     }
 
 
 
-/*
-    protected void getCommeantaire(){
-        Toast.makeText(this,"1 : ",Toast.LENGTH_SHORT).show();
-        Service service = URLretrofit();
-        Toast.makeText(this,"2 : ",Toast.LENGTH_SHORT).show();
-        service.getCommentaire(new Callback<List<Commentaire>>() {
-            @Override
-            public void success(List<Commentaire> commentaires, Response response) {
-                Toast.makeText(getApplication(),"3 : ",Toast.LENGTH_SHORT).show();
-                afficherCommeantaire(commentaires);
-                Toast.makeText(getApplication(),"4 : ",Toast.LENGTH_SHORT).show();
-            }
 
-            @Override
-            public void failure(RetrofitError error) {
-                Toast.makeText(getApplication(),"5 : ",Toast.LENGTH_SHORT).show();
-                System.out.println("erreur : "+error);
-                Toast.makeText(getApplication(),"6 : ",Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    protected void sendPOST(){
-        Service service = URLretrofit();
-        service.postCommentaire("android description",false,new Callback<List<Repo>>() {
-
-            @Override
-            public void success(List<Repo> repos, Response response) {
-                System.out.println("envoyer");
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                System.out.println("erreur");
-            }
-        });
-    }
-
-    public void afficherCommeantaire(List<Commentaire> commentaires) {
-        for(int i=0;i<commentaires.size();i++){
-            Toast.makeText(this,"commeantaire : "+commentaires.get(i),Toast.LENGTH_SHORT).show();
-        }
-
-    }*/
 
     @Override
     public void onLocationChanged(Location location) {
