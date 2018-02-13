@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.abk.parcjardin.Services.Service;
 import com.example.abk.parcjardin.models.Categorie;
 import com.example.abk.parcjardin.models.Commentaire;
+import com.example.abk.parcjardin.models.Horaire;
 import com.example.abk.parcjardin.models.ParcJardin;
 import com.squareup.picasso.Picasso;
 
@@ -48,6 +49,7 @@ public class DetailParcJardin extends AppCompatActivity {
     FragmentManager fm ;
     private String descriptionaff;
     private Long idParcJardinLillios;
+    private  static String Urler;
 
 
     public Service URLretrofit(){
@@ -69,7 +71,6 @@ public class DetailParcJardin extends AppCompatActivity {
         String htmlString = "<u>Plus</u>";
         plus.setText(Html.fromHtml(htmlString));
         Name = (TextView)findViewById(R.id.Name);
-        Horaire = (TextView)findViewById(R.id.Horaire);
         Addresse = (TextView)findViewById(R.id.Addresse);
         Description = (TextView)findViewById(R.id.Description);
 
@@ -90,7 +91,9 @@ public class DetailParcJardin extends AppCompatActivity {
                 descriptionaff = parcJardin.getDescription();
                 idParcJardinLillios = parcJardin.getId();
                 imgCategorie(parcJardin);
-                setImageParcJardin(parcJardin.getName());
+                getHoraire(parcJardin.getId());
+                //setImageParcJardin(parcJardin.getName());
+                getImage(parcJardin.getName());
                 getCommentaireJardinParc(parcJardin.getId());
 
             }
@@ -102,7 +105,45 @@ public class DetailParcJardin extends AppCompatActivity {
         });
     }
 
+    public void getHoraire(Long idParcJardin){
+        Service service = URLretrofit();
 
+
+        service.getHoraireByIdParcJardinLillios(idParcJardin, new Callback<List<Horaire>>() {
+            @Override
+            public void success(List<Horaire> horaires, Response response) {
+
+                System.out.println("----------------------------- :** : "+horaires.size());
+
+                LinearLayout ll2 = (LinearLayout) findViewById(R.id.horaire);
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                ll2.removeAllViews(); //Ligne problèmatique
+                ll2.removeAllViewsInLayout();
+                String tmp="";
+                for(int i=0;i<horaires.size();i++){
+                    if ( horaires.get(i).getJournee() != null)
+                        tmp += horaires.get(i).getJournee()+" , ";
+                    if ( horaires.get(i).getOuverture() != null )
+                        tmp += horaires.get(i).getOuverture()+" , ";
+                    if ( horaires.get(i).getFermuture() != null )
+                        tmp += horaires.get(i).getFermuture();
+                    tmp+="\n";
+                    //tmp += horaires.get(i).getJournee()+" , "+horaires.get(i).getOuverture()+" , "+horaires.get(i).getFermuture()+"\n";
+
+                }
+
+                TextView text = new TextView(DetailParcJardin.this);
+                text.setText(tmp);
+                ll2.addView(text,layoutParams);
+                System.out.println("7777777777777777777777777777 : "+tmp);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+            }
+        });
+    }
 
     public void imgCategorie(ParcJardin parcJardin){
 
@@ -150,7 +191,7 @@ public class DetailParcJardin extends AppCompatActivity {
 
     public void setImageParcJardin(String nameParcJardin){
 
-        Service service = URLretrofit();
+        /*Service service = URLretrofit();
         service.getImagesParcJardin(nameParcJardin, new Callback<List<String>>() {
             @Override
             public void success(List<String> imagesURLName, Response response) {
@@ -162,11 +203,11 @@ public class DetailParcJardin extends AppCompatActivity {
                 getImage(new ArrayList<String>());
                 Toast.makeText(getApplication(),"Error get List Image Parc/Jardin !!",Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
     }
 
-    public void getImage(List<String> imagesURLName){
+    public void getImage(String ParcJardinName){
 
         LinearLayout ll2 = (LinearLayout) findViewById(R.id.imgLinear);
         //LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -177,26 +218,34 @@ public class DetailParcJardin extends AppCompatActivity {
 
 
         //for(int i=0;i<imagesURLName.size();i++){
-        for(int i=0;i<4;i++){
+        for(int i=0;i<5;i++){
             ImageView img = new ImageView(DetailParcJardin.this);
+            img.setId(i);
 
 
             //Picasso.with(getBaseContext()).load("https://www.salford.ac.uk/__data/assets/image/0008/890072/varieties/lightbox.jpg").into(img);
-            Picasso.with(getBaseContext()).load("https://fathomless-woodland-61246.herokuapp.com/images/imageApp/image"+(i+1)+".jpg").into(img);
+            String Url = "https://obscure-reef-42267.herokuapp.com/images/"+ParcJardinName+"/"+ParcJardinName+(i)+".jpg";
 
+
+            Picasso.with(getBaseContext()).load("https://obscure-reef-42267.herokuapp.com/images/"+ParcJardinName+"/"+ParcJardinName+(i)+".jpg").into(img);
+            DetailParcJardin.Urler =ParcJardinName;
             //img.setImageDrawable(getResources().getDrawable(R.drawable.man2));
             img.setLayoutParams(new FrameLayout.LayoutParams(500,350));
+
 
             img.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
+                    System.out.println("marouane : "+view.getId());
                     DFragment dfFragment = new DFragment();
-                    dfFragment.setMessage("https://fathomless-woodland-61246.herokuapp.com/images/imageApp/image1.jpg");//"https://www.salford.ac.uk/__data/assets/image/0008/890072/varieties/lightbox.jpg");
+                    dfFragment.setMessage(""+view.getId());//"https://www.salford.ac.uk/__data/assets/image/0008/890072/varieties/lightbox.jpg");
+                    dfFragment.setNameParcJardin(DetailParcJardin.Urler);
 
                     dfFragment.show(fm,"Big Image");
                     return false;
                 }
             });
+
             //img.setPadding(2,2,2,2);
             //img.setMinimumWidth(50);
             //img.setMaxWidth(50);
@@ -206,6 +255,8 @@ public class DetailParcJardin extends AppCompatActivity {
             imgLine.setImageDrawable(getResources().getDrawable(R.drawable.line2h));
             ll2.addView(imgLine);
         }
+
+
 
 
     }
@@ -282,121 +333,7 @@ public class DetailParcJardin extends AppCompatActivity {
 
             @Override
             public void failure(RetrofitError error) {
-                description = new TextView( DetailParcJardin.this);
-
-                LinearLayout ll2 = (LinearLayout) findViewById(R.id.liner);
-                //ll.setOrientation(LinearLayout.VERTICAL);
-                ll2.removeAllViews(); //Ligne problèmatique
-                ll2.removeAllViewsInLayout();
-
-                for(int i=0;i<4;i++){
-
-
-                    /*LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    //left,top,right,bottom
-                    params.setMargins(0, 0, 600, 0);*/
-
-                    LinearLayout linearH = new LinearLayout(DetailParcJardin.this);
-                    linearH.setOrientation(LinearLayout.HORIZONTAL);
-                    //linearH.setBackgroundResource(R.drawable.return_com1_mar);
-                    //linearH.setBackgroundResource(R.drawable.back_comm_tra);
-
-                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    //layoutParams.setMargins(0, 0, 0, 100);
-
-                    ImageView img = new ImageView(DetailParcJardin.this);
-                    img.setImageDrawable(getResources().getDrawable(R.drawable.profil1));
-                    img.setLayoutParams(new FrameLayout.LayoutParams(100,100));
-
-                    img.setScaleType(ImageView.ScaleType.FIT_START);
-                    linearH.addView(img);
-
-                    LinearLayout linear = new LinearLayout(DetailParcJardin.this);
-                    linear.setOrientation(LinearLayout.VERTICAL);
-
-                    LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    layoutParams2.setMargins(20, 20, 0, 0);
-
-                    linear.removeAllViews(); //Ligne problèmatique
-                    linear.removeAllViewsInLayout();
-
-                    TextView d = new TextView( DetailParcJardin.this);
-                    d.setText("Marouane Abakarim : ");
-                    d.setRight(600);
-                    linear.addView(d,layoutParams2);
-
-                    RatingBar rating = new RatingBar(DetailParcJardin.this);
-                    rating.setScaleX(0.5f);
-                    rating.setScaleY(0.5f);
-                    rating.setNumStars(5);
-                    rating .setMax(5);
-                    rating.setEnabled(true);
-                    rating.setMinimumHeight(5);
-                    //rating.setPadding(1,0,1,0);//.layout(1,1,1,1);
-                    rating.setRating(3.5f);
-                    LinearLayout.LayoutParams layoutParamsRating = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    layoutParamsRating.setMarginStart(85);
-                    linear.addView(rating,layoutParamsRating);
-
-                    //params.setMargins(10, 20, 30, 40);
-
-                    /**/
-
-                    /**/
-                    /*LinearLayout linearCommentaire = new LinearLayout(DetailParcJardin.this);
-                    linearCommentaire.setOrientation(LinearLayout.HORIZONTAL);*/
-                    TextView d2 = new TextView( DetailParcJardin.this);
-                    d2.setText("c o m m e a n t a i r e c o m m e a n t a i r e c o m m e a n t ai r e" +
-                            "c o m m e a nt a i r e c o m m e a n t a i r e c o m m e a n t ai r e " +
-                            "c o m m e a nt a i r e  c o m m e a n t a ir e  c o m m e a n t a i r e" +
-                            "commeantaire commeantaire commeantaire" +
-                            "commeantaire commeantaire commeantaire" +
-                            "commeantaire commeantaire commeantaire ");
-
-                    //d2.setPadding(0,0,0,0);
-
-                    //d2.setPadding(1,0,0,0);
-                    LinearLayout.LayoutParams layoutParamsTextCOmmentaire = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    //layoutParamsTextCOmmentaire.setMargins(0,0,0,0);
-                    //l,t,r,b
-                    //linearCommentaire.setBackgroundResource(R.drawable.back_comm_tra);
-                    //linearCommentaire.addView(d2,layoutParamsTextCOmmentaire);
-                    //linear.addView(linearCommentaire);
-
-
-                    linear.addView(d2,layoutParamsTextCOmmentaire);
-                    //linear.addView(d2);
-                    /**/
-
-                    ImageView imgLine = new ImageView(DetailParcJardin.this);
-                    imgLine.setImageDrawable(getResources().getDrawable(R.drawable.line_2_min));
-                    //imgLine.setLayoutParams(new FrameLayout.LayoutParams(100,100));
-
-                    //imgLine.setScaleType(ImageView.ScaleType.FIT_START);
-                    linear.addView(imgLine);
-                    /**/
-                    //ImageView imgLigne = new ImageView(DetailParcJardin.this);
-                    //imgLigne.setImageDrawable(getResources().getDrawable(R.drawable.ligne));
-                    //imgLigne.setLayoutParams(new FrameLayout.LayoutParams(0,500));
-
-                    /*img.setScaleX(0.5f);
-                    img.setScaleY(0.5f);
-                    img.setLeft(1);
-                    img.setRight(1);*/
-                    //img.setScaleType(ImageView.ScaleType.FIT_START);
-                    //linear.addView(imgLigne);
-
-                    linearH.addView(linear);
-                    ll2.addView(linearH);
-
-
-
-                //description.setText("---------hello world--------");
-                //ll.addView(description); //Autre ligne problèmatique
-
-                }
-
+                Toast.makeText(getApplication(),"probleme get Image !!",Toast.LENGTH_SHORT).show();
             }
         });
     }

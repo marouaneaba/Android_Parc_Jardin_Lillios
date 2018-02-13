@@ -122,6 +122,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
                     public void success(List<ParcJardin> parcJardins, Response response) {
                         if(parcJardins == null || parcJardins.size() == 0 ){
                             Toast.makeText(getApplication(),"Parc Ou Jardin n'existe pas !! ",Toast.LENGTH_SHORT).show();
+                            addPointMap(parcJardins);
                         }else{
                             addPointMap(parcJardins);
                             Toast.makeText(getApplication(),"Parc Search : "+parcJardins,Toast.LENGTH_SHORT).show();

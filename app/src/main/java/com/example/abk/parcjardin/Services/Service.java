@@ -47,6 +47,9 @@ public interface Service {
 
     @GET("/api/CommentaireByPJ/{ParcJardin}")
     void getCommenatiresByParcJardin(@Path("ParcJardin") Long IdParcJardin,Callback<List<Commentaire>> callback);
+
+    @GET("/api/horaire/{idParcJardin}")
+    void getHoraireByIdParcJardinLillios(@Path("idParcJardin") Long IdParcJardin,Callback<List<Horaire>> callback);
 /*
     @POST("/api/Commentaire")
     @FormUrlEncoded

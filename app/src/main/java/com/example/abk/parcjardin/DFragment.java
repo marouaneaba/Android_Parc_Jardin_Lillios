@@ -17,6 +17,8 @@ public class DFragment extends DialogFragment  {
 
 
     private String message;
+    private String nameParcJardin;
+    private ImageView mImageView;
 
     @Override
     public void onPause() {
@@ -27,13 +29,22 @@ public class DFragment extends DialogFragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
         View view = inflater.inflate(R.layout.dialog_fragment,null);
-        ImageView mImageView = (ImageView)view.findViewById(R.id.imageF);
-        Picasso.with(getContext()).load(message).into(mImageView);
+        mImageView = (ImageView)view.findViewById(R.id.imageF);
+
+        String Url = "https://obscure-reef-42267.herokuapp.com/images/"+nameParcJardin+"/"+nameParcJardin+(message)+".jpg";
+
+        Picasso.with(getContext()).load(Url).into(mImageView);
         setCancelable(true);
         return view;
     }
 
     public void setMessage(String message){
         this.message = message;
+
+    }
+
+    public void setNameParcJardin(String nameParcJardin){
+        this.nameParcJardin = nameParcJardin;
+        System.out.println("****************** name : "+this.nameParcJardin);
     }
 }

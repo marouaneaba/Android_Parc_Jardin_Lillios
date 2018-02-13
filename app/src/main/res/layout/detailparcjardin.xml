@@ -126,25 +126,21 @@
 
                 <TextView
                     android:id="@+id/textView4"
-                    android:layout_width="match_parent"
+                    android:layout_width="74dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:fontFamily="casual"
                     android:text="Horaire :"
                     android:typeface="monospace"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/Horaire"
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
-                    android:text="Horaire"
-                    android:textStyle="bold"
-                    android:typeface="monospace"
-                    android:textSize="12sp" />
+                    android:id="@+id/horaire"></LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
